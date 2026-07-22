@@ -1,104 +1,175 @@
-// ==============================================
-// 👉 你的对话剧本写在这里！照着格式复制就能加新场景
-// ==============================================
-const dialogueScenes = [
-    {
-        id: "scene1",
-        title: "日常·傍晚的阳台",
-        messages: [
-            { role: "baiyu", text: "今天的晚霞很好看，要过来一起看吗？" },
-            { role: "chien", text: "……你又没提前说，我头发还没吹干。" },
-            { role: "baiyu", text: "没关系，这样也很好看。" },
-            { role: "chien", text: "……少来。你手里藏的什么？" },
-            { role: "baiyu", text: "路过便利店买的草莓牛奶，给你的。" },
-            { role: "chien", text: "……算你有心。" }
-        ]
-    },
-    {
-        id: "scene2",
-        title: "拌嘴·谁先认输",
-        messages: [
-            { role: "chien", text: "这件事明明是你考虑不周。" },
-            { role: "baiyu", text: "好好好，我的问题。" },
-            { role: "chien", text: "你能不能有点诚意？每次都这样。" },
-            { role: "baiyu", text: "那……池恩小姐教教我，怎么做才算有诚意？" },
-            { role: "chien", text: "……你故意的是吧。" },
-            { role: "baiyu", text: "嗯，故意的。" }
-        ]
-    }
-    // 加新场景：在上面最后一个大括号后面加逗号，再复制一整个对象
-];
+// ========== OC Tab切换功能 ==========
+const tabBtns = document.querySelectorAll('.tab-btn');
+const panels = document.querySelectorAll('.oc-panel, .gallery-grid');
 
-// ==============================================
-// 下面是自动渲染逻辑，不用改，直接用
-// ==============================================
-const sceneTabs = document.getElementById('sceneTabs');
-const dialogueBox = document.getElementById('dialogueBox');
-const replayBtn = document.getElementById('replayBtn');
-
-let currentSceneIndex = 0;
-let timer = null;
-
-// 生成场景按钮
-function renderTabs() {
-    sceneTabs.innerHTML = '';
-    dialogueScenes.forEach((scene, index) => {
-        const tab = document.createElement('div');
-        tab.className = `scene-tab ${index === 0 ? 'active' : ''}`;
-        tab.textContent = scene.title;
-        tab.onclick = () => switchScene(index);
-        sceneTabs.appendChild(tab);
+if (tabBtns.length > 0) {
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      const tabContainer = btn.closest('.oc-tabs');
+      const allTabs = tabContainer.querySelectorAll('.tab-btn');
+      const allPanels = document.querySelectorAll('.oc-panel, .gallery-grid');
+      
+      allTabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      allPanels.forEach(panel => panel.classList.remove('active'));
+      document.getElementById(targetId).classList.add('active');
     });
+  });
 }
 
-// 切换场景
-function switchScene(index) {
-    currentSceneIndex = index;
-    document.querySelectorAll('.scene-tab').forEach((tab, i) => {
-        tab.classList.toggle('active', i === index);
+// ========== 全局背景音乐悬浮按钮 ==========
+const musicBtn = document.createElement('div');
+musicBtn.className = 'music-float-btn';
+musicBtn.innerHTML = `
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M9 18V5l12-2v13"/>
+    <circle cx="6" cy="18" r="3"/>
+    <circle cx="18" cy="16" r="3"/>
+  </svg>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="./music/bgm.mp3" type="audio/mpeg">
+  
+`;
+document.body.appendChild(musicBtn);
+
+const bgMusic = document.getElementById('bgMusic');
+let isPlaying = false;
+
+musicBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    bgMusic.pause();
+    musicBtn.classList.remove('playing');
+  } else {
+    bgMusic.play().catch(() => {}); // 兼容浏览器自动播放限制
+    musicBtn.classList.add('playing');
+  }
+  isPlaying = !isPlaying;
+});
+
+// ========== 穿搭画廊 大图灯箱功能 ==========
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.lightbox-close');
+const outfitCards = document.querySelectorAll('.outfit-card');
+
+if (outfitCards.length > 0) {
+  outfitCards.forEach(card => {
+    card.addEventListener('click', () => {
+      lightboxImg.src = card.dataset.img;
+      lightbox.classList.add('show');
     });
-    playDialogue();
+  });
+
+  closeBtn.addEventListener('click', () => lightbox.classList.remove('show'));
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) lightbox.classList.remove('show');
+  });
 }
+// ========== 穿搭画廊 详情弹窗 ==========
+const outfitModal = document.getElementById('outfitModal');
+const modalClose = document.getElementById('modalClose');
+const outfitCards = document.querySelectorAll('.outfit-card');
+const modalCloseBtn = document.querySelector('.modal-close-btn');
 
-// 逐条播放对话
-function playDialogue() {
-    if (timer) clearInterval(timer);
-    dialogueBox.innerHTML = '';
-    
-    const messages = dialogueScenes[currentSceneIndex].messages;
-    let i = 0;
-
-    timer = setInterval(() => {
-        if (i >= messages.length) {
-            clearInterval(timer);
-            return;
-        }
-        addMessage(messages[i]);
-        i++;
-        dialogueBox.scrollTop = dialogueBox.scrollHeight;
-    }, 800); // 数字越大，对话出现越慢（单位毫秒）
-}
-
-// 添加单条消息气泡
-function addMessage(msg) {
-    const item = document.createElement('div');
-    item.className = `msg-item msg-${msg.role}`;
-    
-    item.innerHTML = `
-        <div class="msg-avatar">
-            <img src="images/avatar/${msg.role}.jpg" alt="${msg.role}" onerror="this.style.display='none'">
-        </div>
-        <div class="msg-bubble">${msg.text}</div>
-    `;
-    
-    dialogueBox.appendChild(item);
-}
-
-// 重播按钮
-replayBtn.onclick = playDialogue;
-
-// 页面加载完成后自动运行
-window.onload = () => {
-    renderTabs();
-    playDialogue();
+// 服设详情数据
+const outfitData = {
+  formal: {
+    tag: '正式场合',
+    title: '公爵正礼服',
+    subtitle: '端庄 · 优雅 · 公爵威仪',
+    desc: '世袭公爵的正式礼服，银白蔷薇暗纹绣于裙身，深绯色外披庄重典雅，是朝会与国宴时的装束。',
+    details: [
+      '银白蔷薇暗纹长裙，腰线处缀珍珠蔷薇扣',
+      '深绯色丝绒外披，内衬银灰绸缎',
+      '银质蔷薇花冠发饰，垂落细碎珍珠链',
+      '裙摆长及地面，行走时如蔷薇花瓣缓缓展开'
+    ],
+    img: './images/chien-formal.jpg'
+  },
+  armor: {
+    tag: '军务装束',
+    title: '军团统帅服',
+    subtitle: '利落 · 冷峻 · 军人风骨',
+    desc: '银蔷薇军团统帅专属甲胄，轻铠便于行军作战，披风绣银蔷薇纹章，是演武与出征时的装束。',
+    details: [
+      '银灰轻质钢铠，关节处做蔷薇雕花',
+      '深绯色绒面披风，内衬银白绸缎',
+      '腰间佩剑「霜薇」，剑格为蔷薇造型',
+      '高束发冠，利落无多余装饰'
+    ],
+    img: './images/chien-armor.jpg'
+  },
+  daily: {
+    tag: '花房日常',
+    title: '花房便服',
+    subtitle: '闲适 · 柔和 · 少女本色',
+    desc: '在花房打理花草时的便服，面料柔软透气，方便活动，是池恩最放松状态下的穿搭。',
+    details: [
+      '米白棉麻衬衫，袖口可挽起',
+      '豆绿亚麻围裙，耐脏且柔和',
+      '棕色牛皮手套，修剪花枝时佩戴',
+      '软底布靴，行走时悄无声息'
+    ],
+    img: './images/chien-daily.jpg'
+  },
+  walk: {
+    tag: '外出便服',
+    title: '漫步常服',
+    subtitle: '清新 · 温婉 · 市井闲步',
+    desc: '微服出街时的寻常装束，色调柔和不显眼，便于融入街市人群。',
+    details: [
+      '米白色棉麻长裙，垂感柔和',
+      '橄榄绿针织开衫，春秋皆宜',
+      '草编宽檐帽，遮挡日光',
+      '藤编小挎包，装手帕与零钱'
+    ],
+    img: './images/chien-walk.jpg'
+  }
 };
+
+if (outfitCards.length > 0) {
+  outfitCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.dataset.outfit;
+      const data = outfitData[key];
+      if (!data) return;
+
+      document.getElementById('modalTag').textContent = data.tag;
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalSubtitle').textContent = data.subtitle;
+      document.getElementById('modalDesc').textContent = data.desc;
+      document.getElementById('modalImg').src = data.img;
+      
+      const detailList = document.getElementById('modalDetails');
+      detailList.innerHTML = data.details.map(item => `<li>${item}</li>`).join('');
+      
+      outfitModal.classList.add('show');
+    });
+  });
+
+  function closeModal() {
+    outfitModal.classList.remove('show');
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modalCloseBtn.addEventListener('click', closeModal);
+  outfitModal.addEventListener('click', e => {
+    if (e.target === outfitModal) closeModal();
+  });
+}
+
+// ========== 日常小剧场 手风琴 ==========
+const storyItems = document.querySelectorAll('.story-item');
+
+storyItems.forEach(item => {
+  const header = item.querySelector('.story-header');
+  header.addEventListener('click', () => {
+    const isActive = item.classList.contains('active');
+    storyItems.forEach(i => i.classList.remove('active'));
+    if (!isActive) {
+      item.classList.add('active');
+    }
+  });
+});

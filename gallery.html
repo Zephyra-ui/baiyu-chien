@@ -1,49 +1,116 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>画廊 | 池恩 × 白屿</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>穿搭画廊 | 池恩 & 白屿</title>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">池恩 × 白屿</div>
-            <div class="nav-links">
-                <a href="index.html">首页</a>
-                <a href="chien.html">池恩</a>
-                <a href="baiyu.html">白屿</a>
-                <a href="dialogue.html">对话剧场</a>
-                <a href="gallery.html" style="color: var(--color-chien);">画廊</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="page-container">
-        <h1 class="page-title">🎨 作品画廊</h1>
-
-        <div class="gallery-grid">
-            <!-- 往这里加图片，复制一行就是一张 -->
-            <div class="gallery-item">
-                <img src="images/art1.jpg" alt="插画1">
-            </div>
-            <div class="gallery-item">
-                <img src="images/art2.jpg" alt="插画2">
-            </div>
-            <div class="gallery-item">
-                <img src="images/art3.jpg" alt="插画3">
-            </div>
-            <div class="gallery-item">
-                <img src="images/art4.jpg" alt="插画4">
-            </div>
-            <div class="gallery-item">
-                <img src="images/art5.jpg" alt="插画5">
-            </div>
-            <div class="gallery-item">
-                <img src="images/art6.jpg" alt="插画6">
-            </div>
-        </div>
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span>🌸</span>
+      池恩 & 白屿
     </div>
+    <div class="nav-menu">
+      <a href="index.html">首页</a>
+      <a href="characters.html">人物档案</a>
+      <a href="worldview.html">世界观</a>
+      <a href="gallery.html" class="active">穿搭画廊</a>
+      <a href="dialogue.html">对话互动</a>
+      <a href="story.html">日常小剧场</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <span class="page-tag">👗 穿搭画廊</span>
+    <h1>池恩的衣橱</h1>
+    <p>公爵的四套经典造型，每一套都有不同的故事</p>
+  </div>
+
+  <!-- 服设网格 -->
+  <div class="gallery-grid active" id="chien-gallery">
+    <!-- 正式礼服 -->
+    <div class="outfit-card" data-outfit="formal">
+      <div class="outfit-img">
+        <span class="outfit-tag">正式场合</span>
+        <img src="./images/chien-formal.jpg" alt="公爵正礼服">
+      </div>
+      <div class="outfit-info">
+        <h3>公爵正礼服</h3>
+        <p>端庄 · 优雅 · 公爵威仪</p>
+      </div>
+    </div>
+
+    <!-- 军务装束 -->
+    <div class="outfit-card" data-outfit="armor">
+      <div class="outfit-img">
+        <span class="outfit-tag">军务装束</span>
+        <img src="./images/chien-armor.jpg" alt="军团统帅服">
+      </div>
+      <div class="outfit-info">
+        <h3>军团统帅服</h3>
+        <p>利落 · 冷峻 · 军人风骨</p>
+      </div>
+    </div>
+
+    <!-- 花房日常 -->
+    <div class="outfit-card" data-outfit="daily">
+      <div class="outfit-img">
+        <span class="outfit-tag">花房日常</span>
+        <img src="./images/chien-daily.jpg" alt="花房便服">
+      </div>
+      <div class="outfit-info">
+        <h3>花房便服</h3>
+        <p>闲适 · 柔和 · 少女本色</p>
+      </div>
+    </div>
+
+    <!-- 外出便服 -->
+    <div class="outfit-card" data-outfit="walk">
+      <div class="outfit-img">
+        <span class="outfit-tag">外出便服</span>
+        <img src="./images/chien-walk.jpg" alt="漫步常服">
+      </div>
+      <div class="outfit-info">
+        <h3>漫步常服</h3>
+        <p>清新 · 温婉 · 市井闲步</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 服设详情弹窗 -->
+  <div class="outfit-modal" id="outfitModal">
+    <div class="modal-content">
+      <span class="modal-close" id="modalClose">×</span>
+      <div class="modal-left">
+        <img id="modalImg" src="" alt="服设大图">
+      </div>
+      <div class="modal-right">
+        <span class="modal-tag" id="modalTag">正式场合</span>
+        <h2 id="modalTitle">公爵正礼服</h2>
+        <p class="modal-subtitle" id="modalSubtitle">端庄 · 优雅 · 公爵威仪</p>
+        <p class="modal-desc" id="modalDesc">
+          世袭公爵的正式礼服，银白蔷薇暗纹绣于裙身，深绯色外披庄重典雅，是朝会与国宴时的装束。
+        </p>
+        <h4>穿搭细节</h4>
+        <ul class="detail-list" id="modalDetails">
+          <li>银白蔷薇暗纹长裙，腰线处缀珍珠蔷薇扣</li>
+          <li>深绯色丝绒外披，内衬银灰绸缎</li>
+          <li>银质蔷薇花冠发饰，垂落细碎珍珠链</li>
+          <li>裙摆长及地面，行走时如蔷薇花瓣缓缓展开</li>
+        </ul>
+        <button class="btn btn-outline modal-close-btn">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">🌸 银蔷薇花房 🌸</div>
+    <p>愿白蔷薇常开，挚友常伴</p>
+    <p style="margin-top: 8px;">Made with ♡ by 桃扇骨</p>
+  </footer>
+
+  <script src="./js/main.js"></script>
 </body>
 </html>

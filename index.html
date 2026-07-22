@@ -1,51 +1,103 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>池恩 × 白屿 | OC 主页</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>池恩 & 白屿 | 银蔷薇花房</title>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">池恩 × 白屿</div>
-            <div class="nav-links">
-                <a href="index.html" style="color: var(--color-chien);">首页</a>
-                <a href="chien.html">池恩</a>
-                <a href="baiyu.html">白屿</a>
-                <a href="dialogue.html">对话剧场</a>
-                <a href="gallery.html">画廊</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- 主视觉区 -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>池恩 × 白屿</h1>
-            <p>两个灵魂，一场专属的故事</p>
-        </div>
-    </section>
-
-    <!-- 角色入口卡片 -->
-    <div class="page-container">
-        <section class="character-cards">
-            <div class="card">
-                <!-- 替换图片：把图放进images文件夹，改文件名 -->
-                <img src="images/chien-main.jpg" alt="池恩">
-                <h2>池恩</h2>
-                <p>外冷内热，心思细腻的贵族统帅</p>
-                <a href="chien.html" class="btn">查看完整档案</a>
-            </div>
-            <div class="card">
-                <img src="images/baiyu-main.jpg" alt="白屿">
-                <h2>白屿</h2>
-                <p>敏感倔强，热烈如灿阳的白化符师</p>
-                <a href="baiyu.html" class="btn">查看完整档案</a>
-            </div>
-        </section>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <span>🌸</span>
+      池恩 & 白屿
     </div>
+    <div class="nav-menu">
+      <a href="index.html" class="active">首页</a>
+      <a href="characters.html">人物档案</a>
+      <a href="worldview.html">世界观</a>
+      <a href="gallery.html">穿搭画廊</a>
+      <a href="dialogue.html">对话互动</a>
+      <a href="story.html">日常小剧场</a>
+    </div>
+  </nav>
+
+  <!-- Hero横幅区 -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">银蔷薇花房</span>
+      <h1>白蔷薇开时，<br>故人缓缓归</h1>
+      <p class="hero-desc">
+        希恩公爵府的花房里，阳光正好。<br>
+        一位是寡言的军团统帅，一位是健谈的游学来客——<br>
+        岁月静好，挚友常伴。
+      </p>
+      <div class="hero-btns">
+        <a href="dialogue.html" class="btn btn-primary">开始对话 →</a>
+        <a href="characters.html" class="btn btn-outline">了解人物</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 功能入口区 -->
+  <section class="entry-section">
+    <div class="section-header">
+      <h2>走进花房</h2>
+      <p>探索她们的世界，聆听她们的故事</p>
+    </div>
+    <div class="entry-cards">
+      <a href="characters.html" class="entry-card">
+        <div class="entry-icon" style="background: var(--primary-chien-light); color: #b89a9a;">📖</div>
+        <h3>人物档案</h3>
+        <p>完整人设资料</p>
+        <span class="arrow">→</span>
+      </a>
+      <a href="worldview.html" class="entry-card">
+        <div class="entry-icon" style="background: #e0e8f0; color: #7a8ea0;">🌍</div>
+        <h3>世界观</h3>
+        <p>大陆与公国设定</p>
+        <span class="arrow">→</span>
+      </a>
+      <a href="gallery.html" class="entry-card">
+        <div class="entry-icon" style="background: var(--primary-bai-light); color: #8aa085;">👗</div>
+        <h3>穿搭画廊</h3>
+        <p>多套经典造型</p>
+        <span class="arrow">→</span>
+      </a>
+      <a href="dialogue.html" class="entry-card">
+        <div class="entry-icon" style="background: #f0ebe5; color: #a09080;">💬</div>
+        <h3>对话互动</h3>
+        <p>AI驱动对话</p>
+        <span class="arrow">→</span>
+      </a>
+      <a href="story.html" class="entry-card">
+        <div class="entry-icon" style="background: #f0e6e6; color: #a08080;">🎭</div>
+        <h3>日常小剧场</h3>
+        <p>四段温馨故事</p>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 引言区 -->
+  <section class="quote-section">
+    <div class="quote-icon">🌸</div>
+    <p class="quote-text">
+      「白蔷薇的花期很短，<br>
+      但只要你在，<br>
+      每一天都是花期。」
+    </p>
+    <p class="quote-author">—— 银蔷薇花房 · 午后</p>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="footer-logo">🌸 银蔷薇花房 🌸</div>
+    <p>愿白蔷薇常开，挚友常伴</p>
+    <p style="margin-top: 8px;">Made with ♡ by 桃扇骨</p>
+  </footer>
+
+  <script src="./js/main.js"></script>
 </body>
 </html>
