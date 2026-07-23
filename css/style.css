@@ -346,7 +346,6 @@ body {
 }
 
 /* 对话互动 */
-/* 对话互动 */
 .chat-container {
   max-width: 720px;
   margin: 0 auto 60px;
@@ -371,18 +370,17 @@ body {
   align-items: flex-end;
   gap: 10px;
   max-width: 78%;
-  clear: both;
 }
 
-/* 池恩：左侧消息，头像在左 */
+/* 池恩：左侧消息，头像在左，气泡在右 */
 .chat-msg.left {
   align-self: flex-start;
 }
 
-/* 白屿：右侧消息，头像在右 */
+/* 白屿：右侧消息，气泡在左，头像在最右 */
 .chat-msg.right {
   align-self: flex-end;
-  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 
 /* 头像样式 */
@@ -510,7 +508,6 @@ body {
     flex-shrink: 0;
   }
 }
-
 /* 日常小剧场 */
 .story-list {
   max-width: 800px;
@@ -850,4 +847,11 @@ body {
     height: 90px;
     font-size: 42px;
   }
+}
+/* 修复白屿卡片横幅颜色 */
+.oc-card .baiyu-banner {
+  background: linear-gradient(135deg, #8aa899, #c4d4cb) !important;
+}
+.oc-card .chien-banner {
+  background: linear-gradient(135deg, #b89a9a, #d6c4c4) !important;
 }
