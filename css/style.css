@@ -155,84 +155,118 @@ body {
   color: #999;
 }
 
-/* 人物档案双栏容器 */
+/* ========== 人物卡片 ========== */
 .oc-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  gap: 36px;
   padding: 0 8% 60px;
 }
 
-/* 单个人物卡片 */
 .oc-card {
   background: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
   position: relative;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.35s ease;
 }
 .oc-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
 }
 
-/* 人物顶部横幅 */
+/* 顶部横幅 */
 .oc-banner {
-  height: 140px;
+  height: 150px;
   position: relative;
 }
 .chien-banner {
-  background: linear-gradient(135deg, #8b3a4a, #c97a8a);
+  background: linear-gradient(135deg, #8b3a4a 0%, #c97a8a 60%, #e6b8c2 100%);
 }
 .baiyu-banner {
-  background: linear-gradient(135deg, #e0ebe7, #f7faf9);
+  background: linear-gradient(135deg, #d8e6e0 0%, #eef5f2 60%, #fafcfb 100%);
 }
 
-/* 人物头像 */
+/* 头像 */
 .oc-avatar {
-  width: 80px;
-  height: 80px;
+  width: 84px;
+  height: 84px;
   background: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 36px;
+  font-size: 38px;
   position: absolute;
-  left: 24px;
-  bottom: -40px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  left: 28px;
+  bottom: -42px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
   z-index: 2;
+  border: 3px solid #fff;
 }
 
-/* 卡片内容区 */
+/* 卡片内容 */
 .oc-card-body {
-  padding: 56px 24px 24px;
+  padding: 60px 28px 24px;
 }
 .oc-card-body h2 {
-  font-size: 24px;
-  color: #333;
+  font-size: 26px;
+  color: #222;
   margin-bottom: 6px;
+  font-weight: 600;
 }
 .oc-title {
   font-size: 14px;
-  color: #999;
+  color: #888;
+  margin-bottom: 14px;
+}
+
+/* 核心标签 */
+.oc-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
   margin-bottom: 16px;
 }
+.oc-tags span {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  background: rgba(160, 74, 92, 0.08);
+  color: #a04a5c;
+}
+.oc-card:nth-child(2) .oc-tags span {
+  background: rgba(125, 155, 145, 0.1);
+  color: #7d9b91;
+}
+
 .oc-tip {
   font-size: 13px;
   color: #a04a5c;
-  margin-top: 8px;
   text-align: right;
+  margin-top: 8px;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+.oc-card:hover .oc-tip {
+  opacity: 1;
 }
 .oc-card:nth-child(2) .oc-tip {
   color: #7d9b91;
 }
 
-/* 人物弹窗左侧 */
+/* ========== 详情弹窗 ========== */
+.character-modal-content {
+  width: 860px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 左侧横幅区 */
 .character-modal-left {
+  width: 38%;
   position: relative;
   overflow: hidden;
 }
@@ -245,95 +279,172 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   background: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 56px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  font-size: 60px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  border: 4px solid #fff;
 }
 
-/* 人物弹窗内容 */
+/* 右侧内容区 */
+.character-modal-content .modal-right {
+  width: 62%;
+  padding: 36px 32px;
+  position: relative;
+}
+
+.char-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f3efec;
+}
+.char-header h2 {
+  font-size: 26px;
+  color: #222;
+  margin: 8px 0 4px;
+  font-weight: 600;
+}
 .char-subtitle {
   color: #999;
-  margin-bottom: 24px;
+  font-size: 14px;
+  margin: 0;
 }
+
+/* 信息模块通用 */
 .char-info-block {
   margin-bottom: 20px;
 }
 .char-info-block h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #f0ece8;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  border-left: 3px solid #a04a5c;
+  color: #333;
 }
 .char-info-block ul {
   list-style: none;
   color: #555;
+  padding: 0;
 }
 .char-info-block li {
-  margin-bottom: 6px;
+  margin-bottom: 7px;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.7;
+  padding-left: 10px;
+  position: relative;
 }
 .char-info-block li::before {
-  content: "·";
-  margin-right: 8px;
-  font-weight: bold;
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ccc;
+  position: absolute;
+  left: 0;
+  top: 9px;
+}
+
+/* 基本信息两列网格 */
+.char-basic-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 12px;
+}
+
+/* 性格+能力并排 */
+.char-info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* 语录模块 */
+.char-quote-block {
+  margin-bottom: 0;
 }
 .char-quote {
-  color: #777;
+  color: #666;
   font-style: italic;
-  line-height: 1.8;
-  padding-left: 12px;
-  border-left: 3px solid #e8e2db;
+  line-height: 1.9;
+  padding: 14px 18px;
+  background: #faf7f5;
+  border-radius: 8px;
+  border-left: 3px solid #e6c5cd;
+  position: relative;
+  font-size: 14px;
+  margin: 0;
+}
+.char-quote::before {
+  content: "“";
+  font-size: 32px;
+  color: #d8c0c6;
+  position: absolute;
+  top: 2px;
+  left: 10px;
+  line-height: 1;
+  font-family: serif;
 }
 
-/* 池恩主题色：玫瑰红调 */
-.character-modal-content.chien-theme .char-info-block h3 {
-  color: #a04a5c;
-}
-.character-modal-content.chien-theme .char-info-block li::before {
-  color: #a04a5c;
-}
-.character-modal-content.chien-theme .char-quote {
-  border-left-color: #e6c5cd;
-}
-
-/* 白屿主题色：清青白调 */
+/* 白屿主题色 */
 .character-modal-content.baiyu-theme .char-info-block h3 {
-  color: #7d9b91;
+  border-left-color: #7d9b91;
 }
 .character-modal-content.baiyu-theme .char-info-block li::before {
-  color: #7d9b91;
+  background: #b8ccc5;
 }
 .character-modal-content.baiyu-theme .char-quote {
+  background: #f6f9f8;
   border-left-color: #d4e2dd;
 }
+.character-modal-content.baiyu-theme .char-quote::before {
+  color: #c8d8d2;
+}
+.character-modal-content.baiyu-theme .char-header {
+  border-bottom-color: #eef2f0;
+}
 
-/* 移动端适配 */
+/* 关闭按钮 */
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 22px;
+  color: #bbb;
+  cursor: pointer;
+  transition: color 0.3s;
+  line-height: 1;
+}
+.modal-close-btn:hover {
+  color: #888;
+}
+
+/* ========== 移动端适配 ========== */
 @media (max-width: 768px) {
   .oc-container {
     grid-template-columns: 1fr;
     padding: 0 20px 40px;
-    gap: 24px;
+    gap: 28px;
   }
   .oc-banner {
-    height: 120px;
+    height: 130px;
   }
   .oc-avatar {
-    width: 70px;
-    height: 70px;
-    font-size: 30px;
+    width: 74px;
+    height: 74px;
+    font-size: 32px;
     left: 20px;
-    bottom: -35px;
+    bottom: -37px;
   }
   .oc-card-body {
-    padding: 48px 20px 20px;
+    padding: 52px 20px 20px;
   }
+
   .character-modal-content {
     flex-direction: column;
     width: 92vw;
@@ -341,16 +452,26 @@ body {
     overflow-y: auto;
   }
   .character-modal-left {
-    height: 180px;
     width: 100%;
+    height: 160px;
   }
   .char-avatar {
     width: 90px;
     height: 90px;
     font-size: 42px;
   }
+  .character-modal-content .modal-right {
+    width: 100%;
+    padding: 28px 20px 24px;
+  }
+  .char-info-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .char-basic-list {
+    grid-template-columns: 1fr;
+  }
 }
-
 /* 世界观卡片 */
 .world-card {
   background: #fff;

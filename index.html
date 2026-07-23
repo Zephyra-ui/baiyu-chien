@@ -86,7 +86,12 @@
       <div class="oc-card-body">
         <h2>池恩</h2>
         <p class="oc-title">玫瑰公国女伯爵</p>
-        <p class="oc-tip">点击查看完整档案 →</p>
+        <div class="oc-tags">
+          <span>女伯爵</span>
+          <span>剑术</span>
+          <span>玫瑰</span>
+        </div>
+        <p class="oc-tip">查看完整档案 →</p>
       </div>
     </div>
 
@@ -97,7 +102,12 @@
       <div class="oc-card-body">
         <h2>白屿</h2>
         <p class="oc-title">中州符术师</p>
-        <p class="oc-tip">点击查看完整档案 →</p>
+        <div class="oc-tags">
+          <span>符术师</span>
+          <span>中州</span>
+          <span>白化体质</span>
+        </div>
+        <p class="oc-tip">查看完整档案 →</p>
       </div>
     </div>
   </div>
@@ -111,23 +121,29 @@
       </div>
       <div class="modal-right">
         <span id="charModalClose" class="modal-close-btn">&times;</span>
-        <div class="modal-tag" id="charTag"></div>
-        <h2 id="charName"></h2>
-        <p id="charTitle" class="char-subtitle"></p>
+        <div class="char-header">
+          <div class="modal-tag" id="charTag"></div>
+          <h2 id="charName"></h2>
+          <p id="charTitle" class="char-subtitle"></p>
+        </div>
 
         <div class="char-info-block">
           <h3>基本信息</h3>
-          <ul id="charBasic"></ul>
+          <ul id="charBasic" class="char-basic-list"></ul>
         </div>
-        <div class="char-info-block">
-          <h3>性格特质</h3>
-          <ul id="charPersonality"></ul>
+
+        <div class="char-info-row">
+          <div class="char-info-block">
+            <h3>性格特质</h3>
+            <ul id="charPersonality"></ul>
+          </div>
+          <div class="char-info-block">
+            <h3>能力特长</h3>
+            <ul id="charAbility"></ul>
+          </div>
         </div>
-        <div class="char-info-block">
-          <h3>能力特长</h3>
-          <ul id="charAbility"></ul>
-        </div>
-        <div class="char-info-block">
+
+        <div class="char-info-block char-quote-block">
           <h3>人物语录</h3>
           <p id="charQuote" class="char-quote"></p>
         </div>
