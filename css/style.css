@@ -155,62 +155,200 @@ body {
   color: #999;
 }
 
-/* 人物档案 */
-.oc-info {
-  padding: 60px 8% 30px;
+/* 人物档案双栏容器 */
+.oc-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  padding: 0 8% 60px;
 }
-.oc-banner {
-  height: 180px;
-  background: linear-gradient(135deg, #b89a9a, #d6c4c4);
+
+/* 单个人物卡片 */
+.oc-card {
+  background: #fff;
   border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.oc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* 人物顶部横幅 */
+.oc-banner {
+  height: 140px;
   position: relative;
 }
+.chien-banner {
+  background: linear-gradient(135deg, #8b3a4a, #c97a8a);
+}
+.baiyu-banner {
+  background: linear-gradient(135deg, #e0ebe7, #f7faf9);
+}
+
+/* 人物头像 */
 .oc-avatar {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   background: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
+  font-size: 36px;
   position: absolute;
-  left: 60px;
-  bottom: -45px;
+  left: 24px;
+  bottom: -40px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 2;
 }
-.oc-info h2 {
-  font-size: 28px;
-  margin: 60px 0 8px 60px;
+
+/* 卡片内容区 */
+.oc-card-body {
+  padding: 56px 24px 24px;
+}
+.oc-card-body h2 {
+  font-size: 24px;
   color: #333;
+  margin-bottom: 6px;
 }
 .oc-title {
-  font-size: 16px;
+  font-size: 14px;
   color: #999;
-  margin-left: 60px;
-  margin-bottom: 30px;
-}
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-.info-item {
-  background: #fff;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-.info-item h3 {
-  font-size: 18px;
-  color: #b89a9a;
   margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #eee;
 }
-.info-item p {
-  margin-bottom: 8px;
+.oc-tip {
+  font-size: 13px;
+  color: #a04a5c;
+  margin-top: 8px;
+  text-align: right;
+}
+.oc-card:nth-child(2) .oc-tip {
+  color: #7d9b91;
+}
+
+/* 人物弹窗左侧 */
+.character-modal-left {
+  position: relative;
+  overflow: hidden;
+}
+.char-banner {
+  width: 100%;
+  height: 100%;
+}
+.char-avatar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* 人物弹窗内容 */
+.char-subtitle {
+  color: #999;
+  margin-bottom: 24px;
+}
+.char-info-block {
+  margin-bottom: 20px;
+}
+.char-info-block h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f0ece8;
+}
+.char-info-block ul {
+  list-style: none;
   color: #555;
+}
+.char-info-block li {
+  margin-bottom: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.char-info-block li::before {
+  content: "·";
+  margin-right: 8px;
+  font-weight: bold;
+}
+.char-quote {
+  color: #777;
+  font-style: italic;
+  line-height: 1.8;
+  padding-left: 12px;
+  border-left: 3px solid #e8e2db;
+}
+
+/* 池恩主题色：玫瑰红调 */
+.character-modal-content.chien-theme .char-info-block h3 {
+  color: #a04a5c;
+}
+.character-modal-content.chien-theme .char-info-block li::before {
+  color: #a04a5c;
+}
+.character-modal-content.chien-theme .char-quote {
+  border-left-color: #e6c5cd;
+}
+
+/* 白屿主题色：清青白调 */
+.character-modal-content.baiyu-theme .char-info-block h3 {
+  color: #7d9b91;
+}
+.character-modal-content.baiyu-theme .char-info-block li::before {
+  color: #7d9b91;
+}
+.character-modal-content.baiyu-theme .char-quote {
+  border-left-color: #d4e2dd;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .oc-container {
+    grid-template-columns: 1fr;
+    padding: 0 20px 40px;
+    gap: 24px;
+  }
+  .oc-banner {
+    height: 120px;
+  }
+  .oc-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+    left: 20px;
+    bottom: -35px;
+  }
+  .oc-card-body {
+    padding: 48px 20px 20px;
+  }
+  .character-modal-content {
+    flex-direction: column;
+    width: 92vw;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .character-modal-left {
+    height: 180px;
+    width: 100%;
+  }
+  .char-avatar {
+    width: 90px;
+    height: 90px;
+    font-size: 42px;
+  }
 }
 
 /* 世界观卡片 */
@@ -739,119 +877,4 @@ body {
     bottom: 20px;
     right: 20px;
   }
-}
-/* 人物卡片补充样式 */
-.oc-card {
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.oc-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-.oc-tip {
-  font-size: 13px;
-  color: #b89a9a;
-  margin-top: 8px;
-  text-align: right;
-}
-.oc-card:nth-child(2) .oc-tip {
-  color: #8aa899;
-}
-
-/* 人物弹窗左侧 */
-.character-modal-left {
-  position: relative;
-  overflow: hidden;
-}
-.char-banner {
-  width: 100%;
-  height: 100%;
-}
-.char-avatar {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 120px;
-  height: 120px;
-  background: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 56px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-}
-
-/* 人物弹窗内容 */
-.char-subtitle {
-  color: #999;
-  margin-bottom: 24px;
-}
-.char-info-block {
-  margin-bottom: 20px;
-}
-.char-info-block h3 {
-  font-size: 16px;
-  color: #b89a9a;
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #f0ece8;
-}
-.char-info-block ul {
-  list-style: none;
-  color: #555;
-}
-.char-info-block li {
-  margin-bottom: 6px;
-  font-size: 14px;
-  line-height: 1.6;
-}
-.char-info-block li::before {
-  content: "·";
-  color: #b89a9a;
-  margin-right: 8px;
-  font-weight: bold;
-}
-.char-quote {
-  color: #777;
-  font-style: italic;
-  line-height: 1.8;
-  padding-left: 12px;
-  border-left: 3px solid #e8e2db;
-}
-
-/* 白屿主题色 */
-.character-modal-content.baiyu-theme .char-info-block h3 {
-  color: #8aa899;
-}
-.character-modal-content.baiyu-theme .char-info-block li::before {
-  color: #8aa899;
-}
-.character-modal-content.baiyu-theme .char-quote {
-  border-left-color: #d0ddd6;
-}
-
-/* 移动端人物弹窗适配 */
-@media (max-width: 768px) {
-  .character-modal-content {
-    flex-direction: column;
-  }
-  .character-modal-left {
-    height: 180px;
-    width: 100%;
-  }
-  .char-avatar {
-    width: 90px;
-    height: 90px;
-    font-size: 42px;
-  }
-}
-/* 修复白屿卡片横幅颜色 */
-.oc-card .baiyu-banner {
-  background: linear-gradient(135deg, #8aa899, #c4d4cb) !important;
-}
-.oc-card .chien-banner {
-  background: linear-gradient(135deg, #b89a9a, #d6c4c4) !important;
 }
