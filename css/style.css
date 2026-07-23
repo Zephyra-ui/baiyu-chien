@@ -1074,12 +1074,25 @@ a {
   max-width: 75%;
 }
 
-/* 背景音乐悬浮按钮 */
-.music-float-btn img {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-  display: block;
+/* ========== 背景音乐悬浮按钮 完整样式 ========== */
+.music-float-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid #e8e2db;
+  color: #b89a9a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
 .music-float-btn:hover {
@@ -1087,14 +1100,16 @@ a {
   color: #9e7f7f;
 }
 
-.music-float-btn svg {
-  width: 22px;
-  height: 22px;
-  display: block; /* 消除svg默认间隙 */
+/* 自定义图标图片样式 */
+.music-float-btn img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
 }
 
-/* 播放时缓慢旋转 */
-.music-float-btn.playing svg {
+/* 播放状态：图标缓慢旋转 */
+.music-float-btn.playing img {
   animation: musicRotate 10s linear infinite;
 }
 
@@ -1102,6 +1117,7 @@ a {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
 
 /* ========== 移动端适配（屏幕宽度 ≤ 768px） ========== */
 @media (max-width: 768px) {

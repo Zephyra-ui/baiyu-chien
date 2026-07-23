@@ -17,19 +17,19 @@ if (tabBtns.length > 0) {
   });
 }
 
-// ========== 2. 全局背景音乐悬浮按钮（实心蔷薇花版） ==========
+// ========== 全局背景音乐悬浮按钮（自定义图片版） ==========
 (function() {
   const musicBtn = document.createElement('div');
   musicBtn.className = 'music-float-btn';
   musicBtn.title = '播放背景音乐';
 
+  // 这里的路径必须和你实际的文件名完全一致
   musicBtn.innerHTML = `
-  <!-- 换成你自己的图片 -->
-  <img src="./images/music-icon.png" alt="背景音乐">
-  <audio id="bgMusic" loop preload="auto">
-    <source src="./music/bgm.mp3" type="audio/mpeg">
-  
-`;
+    <img src="./images/music-icon.png" alt="背景音乐">
+    <audio id="bgMusic" loop preload="auto">
+      <source src="./music/bgm.mp3" type="audio/mpeg">
+    
+  `;
 
   document.body.appendChild(musicBtn);
 
@@ -44,7 +44,6 @@ if (tabBtns.length > 0) {
     } else {
       bgMusic.play().catch(err => {
         console.warn('音乐播放失败：', err);
-        alert('音频加载失败，请检查 music 文件夹里是否有 bgm.mp3 文件');
       });
       musicBtn.classList.add('playing');
       musicBtn.title = '暂停背景音乐';
