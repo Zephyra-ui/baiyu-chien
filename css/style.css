@@ -558,44 +558,7 @@ a {
   color: var(--text-muted);
   line-height: 1.6;
 }
-/* ========== 背景音乐悬浮按钮 ========== */
-.music-float-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border-color);
-  color: var(--primary-chien);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 999;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-sm);
-}
 
-.music-float-btn:hover {
-  transform: scale(1.05);
-}
-
-.music-float-btn svg {
-  width: 20px;
-  height: 20px;
-}
-
-.music-float-btn.playing svg {
-  animation: rotate 8s linear infinite;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 /* ========== 穿搭画廊页 ========== */
 .gallery-grid {
   display: none;
@@ -1109,4 +1072,45 @@ a {
 
 .story-content .chat-msg {
   max-width: 75%;
+}
+
+/* 背景音乐悬浮按钮 */
+.music-float-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid #e8e2db;
+  color: #b89a9a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.music-float-btn {
+  /* 现有的其他属性不用动，只改颜色 */
+  color: #b89a9a; /* 藕粉色，和网站主题色一致 */
+}
+
+.music-float-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* 播放时图标缓慢旋转 */
+.music-float-btn.playing svg {
+  animation: rotate 8s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

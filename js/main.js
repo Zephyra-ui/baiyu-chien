@@ -19,34 +19,6 @@ if (tabBtns.length > 0) {
   });
 }
 
-// ========== 全局背景音乐悬浮按钮 ==========
-const musicBtn = document.createElement('div');
-musicBtn.className = 'music-float-btn';
-musicBtn.innerHTML = `
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-    <path d="M9 18V5l12-2v13"/>
-    <circle cx="6" cy="18" r="3"/>
-    <circle cx="18" cy="16" r="3"/>
-  </svg>
-  <audio id="bgMusic" loop preload="auto">
-    <source src="./music/bgm.mp3" type="audio/mpeg">
-  
-`;
-document.body.appendChild(musicBtn);
-
-const bgMusic = document.getElementById('bgMusic');
-let isPlaying = false;
-
-musicBtn.addEventListener('click', () => {
-  if (isPlaying) {
-    bgMusic.pause();
-    musicBtn.classList.remove('playing');
-  } else {
-    bgMusic.play().catch(() => {}); // 兼容浏览器自动播放限制
-    musicBtn.classList.add('playing');
-  }
-  isPlaying = !isPlaying;
-});
 
 // ========== 穿搭画廊 大图灯箱功能 ==========
 const lightbox = document.getElementById('lightbox');
@@ -172,4 +144,36 @@ storyItems.forEach(item => {
       item.classList.add('active');
     }
   });
+});
+
+// 全局背景音乐悬浮按钮（蔷薇花版）
+const musicBtn = document.createElement('div');
+musicBtn.className = 'music-float-btn';
+musicBtn.innerHTML = `
+  <!-- 简约线描蔷薇花图标 -->
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3a4 4 0 0 0-4 4c0 1.5.5 2.5 1 3a4 4 0 0 0-3 4 4 4 0 0 0 4 4c1 0 2-.5 3-1 1 .5 2 1 3 1a4 4 0 0 0 4-4 4 4 0 0 0-3-4c.5-.5 1-1.5 1-3a4 4 0 0 0-4-4c-1 0-2 .5-3 1-1-.5-2-1-3-1z"/>
+    <circle cx="12" cy="12" r="2"/>
+  </svg>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="./music/bgm.mp3" type="audio/mpeg">
+  
+`;
+document.body.appendChild(musicBtn);
+
+// 播放/暂停逻辑（保持不变）
+const bgMusic = document.getElementById('bgMusic');
+let isPlaying = false;
+
+musicBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    bgMusic.pause();
+    musicBtn.classList.remove('playing');
+  } else {
+    bgMusic.play().catch(() => {
+      console.log('音频加载失败，请检查文件路径和文件名');
+    });
+    musicBtn.classList.add('playing');
+  }
+  isPlaying = !isPlaying;
 });
