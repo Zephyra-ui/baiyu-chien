@@ -1115,3 +1115,165 @@ a {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* ========== 移动端适配（屏幕宽度 ≤ 768px） ========== */
+@media (max-width: 768px) {
+  /* 1. 全局基础调整 */
+  .page-header h1 {
+    font-size: 26px;
+  }
+  .page-header {
+    padding: 40px 20px 32px;
+  }
+
+  /* 2. 导航栏：修复竖排，改为横向滚动 */
+  .navbar {
+    padding: 16px 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 16px;
+  }
+  .nav-logo {
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+  .nav-menu {
+    flex-shrink: 0;
+    gap: 20px;
+    font-size: 14px;
+    padding-bottom: 2px;
+  }
+  /* 隐藏横向滚动条 */
+  .navbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 3. 首页Hero横幅区 */
+  .hero {
+    height: 420px;
+    padding: 0 24px;
+  }
+  .hero h1 {
+    font-size: 30px;
+  }
+  .hero-desc {
+    font-size: 14px;
+  }
+  .hero-btns {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* 4. 功能入口卡片：5列改2列 */
+  .entry-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .entry-card {
+    padding: 24px 12px;
+  }
+  .entry-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+  .entry-card h3 {
+    font-size: 15px;
+  }
+
+  /* 5. 引言区 */
+  .quote-text {
+    font-size: 18px;
+  }
+
+  /* 6. 人物档案页：两列改一列 */
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .oc-info {
+    padding: 50px 24px 24px;
+  }
+  .oc-banner {
+    height: 140px;
+  }
+  .oc-avatar {
+    width: 70px;
+    height: 70px;
+    left: 24px;
+    bottom: -35px;
+    font-size: 32px;
+  }
+
+  /* 7. 世界观页面 */
+  .world-card {
+    padding: 20px 24px;
+  }
+
+  /* 8. 穿搭画廊 */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 0 20px;
+  }
+
+  /* 穿搭详情弹窗：改为上下布局 */
+  .modal-content {
+    flex-direction: column;
+    width: 92vw;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-left, .modal-right {
+    width: 100%;
+  }
+  .modal-left {
+    height: 300px;
+  }
+  .modal-right {
+    padding: 24px 20px;
+  }
+
+  /* 9. 对话互动页 */
+  .chat-window {
+    height: 320px;
+    padding: 16px;
+  }
+  .chat-msg {
+    max-width: 85%;
+  }
+  .quick-topics {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+  .topic-tag {
+    flex-shrink: 0;
+  }
+
+  /* 10. 日常小剧场 */
+  .story-header {
+    padding: 16px 20px;
+  }
+  .story-content {
+    padding: 0 20px 20px;
+  }
+
+  /* 11. 音乐按钮缩小，避免遮挡 */
+  .music-float-btn {
+    width: 42px;
+    height: 42px;
+    bottom: 20px;
+    right: 20px;
+  }
+  .music-float-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
