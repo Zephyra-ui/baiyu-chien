@@ -24,14 +24,12 @@ if (tabBtns.length > 0) {
   musicBtn.title = '播放背景音乐';
 
   musicBtn.innerHTML = `
-    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2.5c-1.2 0-2.3.6-3 1.5-.7-.9-1.8-1.5-3-1.5A3.5 3.5 0 0 0 2.5 6c0 1.3.7 2.4 1.7 3A3.5 3.5 0 0 0 3 12a3.5 3.5 0 0 0 1.2 2.8c-.6.7-1 1.6-1 2.7A3.5 3.5 0 0 0 6.7 21c1.1 0 2-.4 2.7-1 .8.6 1.8 1 2.8 1s2-.4 2.8-1c.7.6 1.6 1 2.7 1a3.5 3.5 0 0 0 3.5-3.5c0-1.1-.4-2-1-2.7A3.5 3.5 0 0 0 21 12a3.5 3.5 0 0 0-1.2-2.8c1-.6 1.7-1.7 1.7-3A3.5 3.5 0 0 0 18 2.5c-1.2 0-2.3.6-3 1.5-.7-.9-1.8-1.5-3-1.5z"/>
-      <circle cx="12" cy="12" r="2" fill="#fff" opacity="0.8"/>
-    </svg>
-    <audio id="bgMusic" loop preload="auto">
-      <source src="./music/bgm.mp3" type="audio/mpeg">
-    
-  `;
+  <!-- 换成你自己的图片 -->
+  <img src="./images/music-icon.png" alt="背景音乐">
+  <audio id="bgMusic" loop preload="auto">
+    <source src="./music/bgm.mp3" type="audio/mpeg">
+  
+`;
 
   document.body.appendChild(musicBtn);
 

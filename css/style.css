@@ -1075,24 +1075,11 @@ a {
 }
 
 /* 背景音乐悬浮按钮 */
-.music-float-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(8px);
-  border: 1px solid #e8e2db;
-  color: #b89a9a; /* 蔷薇花填充色：藕粉主题色 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 9999; /* 提高层级，确保不被其他元素挡住 */
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+.music-float-btn img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
 }
 
 .music-float-btn:hover {
