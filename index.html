@@ -3,101 +3,257 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>池恩 & 白屿 | 银蔷薇花房</title>
+  <title>银蔷薇花房 - 池恩 & 白屿</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <!-- 导航栏 -->
+
+  <!-- 共用导航栏 -->
   <nav class="navbar">
-    <div class="nav-logo">
-      <span>🌸</span>
-      池恩 & 白屿
-    </div>
+    <div class="nav-logo">银蔷薇花房</div>
     <div class="nav-menu">
-      <a href="index.html" class="active">首页</a>
-      <a href="characters.html">人物档案</a>
-      <a href="worldview.html">世界观</a>
-      <a href="gallery.html">穿搭画廊</a>
-      <a href="dialogue.html">对话互动</a>
-      <a href="story.html">日常小剧场</a>
+      <a href="#home">首页</a>
+      <a href="#characters">人物档案</a>
+      <a href="#worldview">世界观</a>
+      <a href="#gallery">穿搭画廊</a>
+      <a href="#chat">对话互动</a>
+      <a href="#story">日常小剧场</a>
     </div>
   </nav>
 
-  <!-- Hero横幅区 -->
-  <section class="hero">
-    <div class="hero-content">
-      <span class="hero-tag">银蔷薇花房</span>
-      <h1>白蔷薇开时，<br>故人缓缓归</h1>
-      <p class="hero-desc">
-        希恩公爵府的花房里，阳光正好。<br>
-        一位是寡言的军团统帅，一位是健谈的游学来客——<br>
-        岁月静好，挚友常伴。
-      </p>
-      <div class="hero-btns">
-        <a href="dialogue.html" class="btn btn-primary">开始对话 →</a>
-        <a href="characters.html" class="btn btn-outline">了解人物</a>
+  <!-- 1. 首页板块 -->
+  <section id="home" class="page-section active">
+    <!-- 首页Hero横幅 -->
+    <div class="hero">
+      <div class="hero-content">
+        <h1>银蔷薇花房</h1>
+        <p class="hero-desc">公爵与学者的温馨日常</p>
+        <div class="hero-btns">
+          <a href="#characters" class="btn">了解人物</a>
+          <a href="#chat" class="btn">开始对话</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 功能入口卡片 -->
+    <div class="entry-cards">
+      <div class="entry-card">
+        <div class="entry-icon">🌸</div>
+        <h3>人物档案</h3>
+        <p>深入了解池恩与白屿的背景故事</p>
+      </div>
+      <div class="entry-card">
+        <div class="entry-icon">📜</div>
+        <h3>世界观</h3>
+        <p>探索银蔷薇公国的风土人情</p>
+      </div>
+      <div class="entry-card">
+        <div class="entry-icon">👗</div>
+        <h3>穿搭画廊</h3>
+        <p>欣赏不同场合的精致装扮</p>
+      </div>
+      <div class="entry-card">
+        <div class="entry-icon">💬</div>
+        <h3>对话互动</h3>
+        <p>与角色进行温馨对话</p>
+      </div>
+      <div class="entry-card">
+        <div class="entry-icon">📖</div>
+        <h3>日常小剧场</h3>
+        <p>阅读她们的生活趣事</p>
+      </div>
+    </div>
+
+    <!-- 引言区 -->
+    <div class="quote-section">
+      <p class="quote-text">"花房的蔷薇，和你一样，温柔又坚韧。"</p>
+      <p class="quote-author">—— 白屿</p>
+    </div>
+  </section>
+
+  <!-- 2. 人物档案板块 -->
+  <section id="characters" class="page-section">
+    <div class="page-header">
+      <h1>人物档案</h1>
+      <p>公爵与学者的相遇</p>
+    </div>
+
+    <div class="oc-info">
+      <div class="oc-banner"></div>
+      <div class="oc-avatar">🌸</div>
+      <h2>池恩</h2>
+      <p class="oc-title">希恩公爵 · 银蔷薇军团统帅</p>
+      
+      <div class="info-grid">
+        <div class="info-item">
+          <h3>基本信息</h3>
+          <p>人类 / 22岁 / 女</p>
+          <p>身高：172cm</p>
+          <p>生日：6月15日</p>
+        </div>
+        <div class="info-item">
+          <h3>性格特质</h3>
+          <p>外表清冷寡言，内心柔软细腻</p>
+          <p>责任感极强，重视承诺</p>
+          <p>容易耳尖发红，不擅长表达情感</p>
+        </div>
+        <div class="info-item">
+          <h3>能力特长</h3>
+          <p>剑术高超，精通军事指挥</p>
+          <p>擅长园艺，尤其精通蔷薇栽培</p>
+          <p>拥有敏锐的洞察力</p>
+        </div>
+        <div class="info-item">
+          <h3>人物语录</h3>
+          <p>"我会守护好这片土地，和这里的蔷薇。"</p>
+          <p>"不需要你的同情，我自己能行。"</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 功能入口区 -->
-  <section class="entry-section">
-    <div class="section-header">
-      <h2>走进花房</h2>
-      <p>探索她们的世界，聆听她们的故事</p>
+  <!-- 3. 世界观板块 -->
+  <section id="worldview" class="page-section">
+    <div class="page-header">
+      <h1>世界观</h1>
+      <p>银蔷薇公国的世界</p>
     </div>
-    <div class="entry-cards">
-      <a href="characters.html" class="entry-card">
-        <div class="entry-icon" style="background: var(--primary-chien-light); color: #b89a9a;">📖</div>
-        <h3>人物档案</h3>
-        <p>完整人设资料</p>
-        <span class="arrow">→</span>
-      </a>
-      <a href="worldview.html" class="entry-card">
-        <div class="entry-icon" style="background: #e0e8f0; color: #7a8ea0;">🌍</div>
-        <h3>世界观</h3>
-        <p>大陆与公国设定</p>
-        <span class="arrow">→</span>
-      </a>
-      <a href="gallery.html" class="entry-card">
-        <div class="entry-icon" style="background: var(--primary-bai-light); color: #8aa085;">👗</div>
-        <h3>穿搭画廊</h3>
-        <p>多套经典造型</p>
-        <span class="arrow">→</span>
-      </a>
-      <a href="dialogue.html" class="entry-card">
-        <div class="entry-icon" style="background: #f0ebe5; color: #a09080;">💬</div>
-        <h3>对话互动</h3>
-        <p>AI驱动对话</p>
-        <span class="arrow">→</span>
-      </a>
-      <a href="story.html" class="entry-card">
-        <div class="entry-icon" style="background: #f0e6e6; color: #a08080;">🎭</div>
-        <h3>日常小剧场</h3>
-        <p>四段温馨故事</p>
-        <span class="arrow">→</span>
-      </a>
+
+    <div class="world-card">
+      <h3>风土与文化</h3>
+      <p>希恩公国的人们喜爱花艺与诗歌，每年蔷薇盛开的季节会举办「蔷薇祭」。花朝节时，满城的人都会戴上蔷薇花冠，在花田间饮酒诵诗。公爵府也会开放花园，接待民众参观。</p>
+      <p>蜂蜜糕是公国最受欢迎的点心之一，用当地的野花蜂蜜制作，甜而不腻。池恩尤其喜欢在午后配上一杯花茶享用。</p>
+    </div>
+
+    <div class="world-card">
+      <h3>历史与传说</h3>
+      <p>银蔷薇军团成立于三百年前，初代统帅是一位女性骑士，她用银蔷薇作为军团的象征，代表着坚韧与温柔。军团世代守护公国边境，是国家的重要防御力量。</p>
+      <p>传说中，公国的创始者曾在一片荒芜的土地上种下第一株银蔷薇，后来这片土地变成了繁华的花房。</p>
     </div>
   </section>
 
-  <!-- 引言区 -->
-  <section class="quote-section">
-    <div class="quote-icon">🌸</div>
-    <p class="quote-text">
-      「白蔷薇的花期很短，<br>
-      但只要你在，<br>
-      每一天都是花期。」
-    </p>
-    <p class="quote-author">—— 银蔷薇花房 · 午后</p>
+  <!-- 4. 穿搭画廊板块 -->
+  <section id="gallery" class="page-section">
+    <div class="page-header">
+      <h1>穿搭画廊</h1>
+      <p>不同场合的精致装扮</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="outfit-card" data-outfit="formal">
+        <img src="./images/chien-formal.jpg" alt="公爵正礼服">
+        <div class="outfit-info">
+          <h3>公爵正礼服</h3>
+          <p>正式场合 · 端庄优雅</p>
+        </div>
+      </div>
+      <div class="outfit-card" data-outfit="armor">
+        <img src="./images/chien-armor.jpg" alt="军团统帅服">
+        <div class="outfit-info">
+          <h3>军团统帅服</h3>
+          <p>军务装束 · 冷峻利落</p>
+        </div>
+      </div>
+      <div class="outfit-card" data-outfit="daily">
+        <img src="./images/chien-daily.jpg" alt="花房便服">
+        <div class="outfit-info">
+          <h3>花房便服</h3>
+          <p>日常穿着 · 闲适柔和</p>
+        </div>
+      </div>
+      <div class="outfit-card" data-outfit="walk">
+        <img src="./images/chien-walk.jpg" alt="漫步常服">
+        <div class="outfit-info">
+          <h3>漫步常服</h3>
+          <p>外出装束 · 清新温婉</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 穿搭详情弹窗 -->
+    <div id="outfitModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-left">
+          <img id="modalImg" src="" alt="穿搭详情">
+        </div>
+        <div class="modal-right">
+          <span id="modalClose" class="modal-close-btn">&times;</span>
+          <div id="modalTag" class="modal-tag"></div>
+          <h2 id="modalTitle"></h2>
+          <p id="modalSubtitle"></p>
+          <p id="modalDesc"></p>
+          <ul id="modalDetails"></ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- 页脚 -->
-  <footer class="footer">
-    <div class="footer-logo">🌸 银蔷薇花房 🌸</div>
-    <p>愿白蔷薇常开，挚友常伴</p>
-    <p style="margin-top: 8px;">Made with ♡ by 桃扇骨</p>
-  </footer>
+  <!-- 5. 对话互动板块 -->
+  <section id="chat" class="page-section">
+    <div class="page-header">
+      <h1>对话互动</h1>
+      <p>与池恩和白屿的温馨日常</p>
+    </div>
 
+    <div class="chat-container">
+      <div id="chatWindow" class="chat-window">
+        <div class="chat-msg system">点击下方话题开始对话...</div>
+      </div>
+      
+      <div class="quick-topics">
+        <div class="topic-tag">花房的白蔷薇</div>
+        <div class="topic-tag">蜂蜜甜点</div>
+        <div class="topic-tag">游历见闻</div>
+        <div class="topic-tag">军中趣事</div>
+        <div class="topic-tag">春日午后</div>
+      </div>
+      
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" placeholder="输入话题...">
+        <button class="send-btn">发送</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 日常小剧场板块 -->
+  <section id="story" class="page-section">
+    <div class="page-header">
+      <h1>日常小剧场</h1>
+      <p>她们的生活趣事</p>
+    </div>
+
+    <div class="story-list">
+      <div class="story-item">
+        <div class="story-header">
+          <h3>第一次做甜点</h3>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="story-content">
+          <p>白屿心血来潮想给池恩做蜂蜜糕，结果把厨房弄得一团糟。池恩无奈地看着他，最后还是挽起袖子一起收拾，顺便教他正确的做法。虽然成品卖相一般，但两个人吃得很开心。</p>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-header">
+          <h3>雨夜的花房</h3>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="story-content">
+          <p>雷雨夜，池恩担心花房的蔷薇，冒雨去查看。白屿不放心，拿着伞跟了过去。两个人在花房里躲雨，听着雨声，聊着各自的心事。那天晚上，池恩第一次主动靠在白屿肩上。</p>
+        </div>
+      </div>
+      <div class="story-item">
+        <div class="story-header">
+          <h3>军团的表彰</h3>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="story-content">
+          <p>池恩带领军团打了胜仗，国王亲自表彰。白屿特意赶回来，在人群中用力鼓掌。庆功宴上，池恩难得地喝了点酒，脸颊微红，话也比平时多了些。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 背景音乐 -->
   <script src="./js/main.js"></script>
 </body>
 </html>

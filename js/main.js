@@ -1,30 +1,33 @@
-// ========== 1. OC Tab切换功能 ==========
-const tabBtns = document.querySelectorAll('.tab-btn');
-if (tabBtns.length > 0) {
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.dataset.target;
-      const tabContainer = btn.closest('.oc-tabs');
-      const allTabs = tabContainer.querySelectorAll('.tab-btn');
-      const allPanels = document.querySelectorAll('.oc-panel, .gallery-grid');
-      
-      allTabs.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      allPanels.forEach(panel => panel.classList.remove('active'));
-      document.getElementById(targetId).classList.add('active');
-    });
+// ========== 单页板块切换 ==========
+function switchPage() {
+  const hash = window.location.hash.slice(1) || 'home';
+  const sections = document.querySelectorAll('.page-section');
+  const navLinks = document.querySelectorAll('.nav-menu a');
+
+  sections.forEach(sec => sec.classList.remove('active'));
+  const targetSection = document.getElementById(hash);
+  if (targetSection) {
+    targetSection.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  navLinks.forEach(link => {
+    if (link.getAttribute('href') === '#' + hash) {
+      link.style.color = '#b89a9a';
+    } else {
+      link.style.color = '';
+    }
   });
 }
+window.addEventListener('load', switchPage);
+window.addEventListener('hashchange', switchPage);
 
 // ========== 背景音乐：纯自定义透明图标 + 播放旋转 ==========
 (function () {
-  // 创建按钮容器（仅用于定位和点击，无视觉效果）
   const musicBtn = document.createElement('div');
   musicBtn.className = 'music-float-btn';
   musicBtn.title = '播放背景音乐';
 
-  // 只放你的图片 + 音频，没有任何多余装饰
   musicBtn.innerHTML = `
     <img src="./images/music-icon.png" alt="背景音乐">
     <audio id="bgMusic" loop preload="auto">
@@ -37,7 +40,6 @@ if (tabBtns.length > 0) {
   const bgMusic = document.getElementById('bgMusic');
   let isPlaying = false;
 
-  // 点击切换播放/暂停 + 旋转状态
   musicBtn.addEventListener('click', () => {
     if (isPlaying) {
       bgMusic.pause();
@@ -50,13 +52,12 @@ if (tabBtns.length > 0) {
   });
 })();
 
-// ========== 3. 穿搭画廊 详情弹窗 ==========
+// ========== 穿搭画廊 详情弹窗 ==========
 const outfitModal = document.getElementById('outfitModal');
 const outfitCards = document.querySelectorAll('.outfit-card');
 
 if (outfitCards.length > 0 && outfitModal) {
   const modalClose = document.getElementById('modalClose');
-  const modalCloseBtn = document.querySelector('.modal-close-btn');
 
   const outfitData = {
     formal: {
@@ -128,36 +129,33 @@ if (outfitCards.length > 0 && outfitModal) {
       const detailList = document.getElementById('modalDetails');
       detailList.innerHTML = data.details.map(item => `<li>${item}</li>`).join('');
       
-      outfitModal.classList.add('show');
+      outfitModal.style.display = 'flex';
     });
   });
 
   function closeModal() {
-    outfitModal.classList.remove('show');
+    outfitModal.style.display = 'none';
   }
 
   modalClose.addEventListener('click', closeModal);
-  modalCloseBtn.addEventListener('click', closeModal);
   outfitModal.addEventListener('click', e => {
     if (e.target === outfitModal) closeModal();
   });
 }
 
-// ==========4.对话互动：预设静态对话 ==========
+// ========== 对话互动：预设静态对话 ==========
 const chatWindow = document.getElementById('chatWindow');
 const topicTags = document.querySelectorAll('.topic-tag');
 const chatInput = document.querySelector('.chat-input');
 const sendBtn = document.querySelector('.send-btn');
 
-// ========== 预设对话库 ==========
-// 你可以自己用AI生成后，按格式往里添加/修改
 const presetChats = {
   "花房的白蔷薇": [
     { role: "chien", text: "今天的白蔷薇开得比昨天更盛了。" },
     { role: "baiyu", text: "我刚进公爵府就闻到香味了，你又在花房待了一上午？" },
     { role: "chien", text: "……有几枝要修剪，不然会抢养分。" },
     { role: "baiyu", text: "难怪你指尖都沾着花汁。我带了南疆的花肥，据说能让花期再延半个月。" },
-    { role: "chien", text: "放那边桌上吧。谢了。" }
+    { role: "chien", text: "……放那边桌上吧。谢了。" }
   ],
   "蜂蜜甜点": [
     { role: "baiyu", text: "我惦记了一整年的蜂蜜凉糕，今年厨房还做吗？" },
@@ -167,9 +165,9 @@ const presetChats = {
     { role: "baiyu", text: "哈哈，一起去？我顺便给你讲南边甜点的做法。" }
   ],
   "游历见闻": [
-    { role: "baiyu", text: "我之前经过整片的沙漠蔷薇，和你花房的完全不一样。" },
+    { role: "baiyu", text: "这次往西走，见了整片的沙漠蔷薇，和你花房的完全不一样。" },
     { role: "chien", text: "沙漠里也能长蔷薇？" },
-    { role: "baiyu", text: "能啊，花瓣更厚，颜色也深。我还有种子，下次种给你看。" },
+    { role: "baiyu", text: "能啊，花瓣更厚，颜色也深。我带了种子回来，下次种给你看。" },
     { role: "chien", text: "……嗯，我记着。你还遇到什么了？" },
     { role: "baiyu", text: "遇到了游牧的商队，他们唱的歌调子特别有意思，我哼给你听？" }
   ],
@@ -189,21 +187,18 @@ const presetChats = {
   ]
 };
 
-// ========== 交互逻辑 ==========
-// 逐句渲染对话，模拟自然聊天节奏
 function renderChat(topic) {
   const chatList = presetChats[topic];
   if (!chatList) return;
 
-  chatWindow.innerHTML = ''; // 清空当前聊天
+  chatWindow.innerHTML = '';
   chatList.forEach((msg, index) => {
     setTimeout(() => {
       addMsg(msg.role === 'chien' ? 'left' : 'right', msg.text);
-    }, index * 600); // 每句间隔600毫秒依次出现
+    }, index * 600);
   });
 }
 
-// 添加单条消息气泡
 function addMsg(type, content) {
   const div = document.createElement('div');
   div.className = `chat-msg ${type}`;
@@ -224,7 +219,6 @@ function addMsg(type, content) {
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
-// 绑定快捷话题点击
 if (topicTags.length > 0) {
   topicTags.forEach(tag => {
     tag.addEventListener('click', () => {
@@ -234,13 +228,11 @@ if (topicTags.length > 0) {
   });
 }
 
-// 输入框发送：匹配预设话题，无匹配则提示
 if (sendBtn && chatInput) {
   function handleSend() {
     const text = chatInput.value.trim();
     if (!text) return;
     
-    // 模糊匹配预设话题
     const matched = Object.keys(presetChats).find(t => 
       t.includes(text) || text.includes(t)
     );
@@ -258,7 +250,8 @@ if (sendBtn && chatInput) {
     if (e.key === 'Enter') handleSend();
   });
 }
-// ========== 5. 日常小剧场 手风琴折叠 ==========
+
+// ========== 日常小剧场 手风琴折叠 ==========
 const storyItems = document.querySelectorAll('.story-item');
 if (storyItems.length > 0) {
   storyItems.forEach(item => {
