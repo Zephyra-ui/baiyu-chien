@@ -17,13 +17,14 @@ if (tabBtns.length > 0) {
   });
 }
 
-// ========== 全局背景音乐悬浮按钮（自定义图片版） ==========
-(function() {
+// ========== 背景音乐：纯自定义透明图标 + 播放旋转 ==========
+(function () {
+  // 创建按钮容器（仅用于定位和点击，无视觉效果）
   const musicBtn = document.createElement('div');
   musicBtn.className = 'music-float-btn';
   musicBtn.title = '播放背景音乐';
 
-  // 这里的路径必须和你实际的文件名完全一致
+  // 只放你的图片 + 音频，没有任何多余装饰
   musicBtn.innerHTML = `
     <img src="./images/music-icon.png" alt="背景音乐">
     <audio id="bgMusic" loop preload="auto">
@@ -36,17 +37,14 @@ if (tabBtns.length > 0) {
   const bgMusic = document.getElementById('bgMusic');
   let isPlaying = false;
 
+  // 点击切换播放/暂停 + 旋转状态
   musicBtn.addEventListener('click', () => {
     if (isPlaying) {
       bgMusic.pause();
       musicBtn.classList.remove('playing');
-      musicBtn.title = '播放背景音乐';
     } else {
-      bgMusic.play().catch(err => {
-        console.warn('音乐播放失败：', err);
-      });
+      bgMusic.play().catch(() => {});
       musicBtn.classList.add('playing');
-      musicBtn.title = '暂停背景音乐';
     }
     isPlaying = !isPlaying;
   });

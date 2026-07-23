@@ -1074,52 +1074,48 @@ a {
   max-width: 75%;
 }
 
-/* ========== 背景音乐悬浮按钮：只显示花朵图标 ========== */
+/* 音乐按钮容器：仅定位，完全透明无视觉效果 */
 .music-float-btn {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   background: transparent;
   border: none;
   box-shadow: none;
-  backdrop-filter: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 9999;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
+/* 鼠标悬停轻微放大 */
 .music-float-btn:hover {
   transform: scale(1.15);
 }
 
-/* 自定义花朵图标 */
+/* 你的自定义图标 */
 .music-float-btn img {
-  width: 32px;
-  height: 32px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
 }
 
-/* 播放时花朵旋转 */
+/* 播放状态：图标旋转 */
 .music-float-btn.playing img {
-  animation: musicRotate 10s linear infinite;
+  animation: iconRotate 10s linear infinite;
 }
 
-@keyframes musicRotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes iconRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
-
 /* ========== 移动端适配（屏幕宽度 ≤ 768px） ========== */
 @media (max-width: 768px) {
   /* 1. 全局基础调整 */
