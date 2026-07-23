@@ -72,46 +72,69 @@
   </section>
 
   <!-- 2. 人物档案板块 -->
-  <section id="characters" class="page-section">
-    <div class="page-header">
-      <h1>人物档案</h1>
-      <p>公爵与学者的相遇</p>
+<section id="characters" class="page-section">
+  <div class="page-header">
+    <h1>人物档案</h1>
+    <p>公爵与学者的相遇</p>
+  </div>
+
+  <div class="oc-container">
+    <!-- 池恩卡片 -->
+    <div class="oc-card" data-character="chien">
+      <div class="oc-banner chien-banner"></div>
+      <div class="oc-avatar">🌸</div>
+      <div class="oc-card-body">
+        <h2>池恩</h2>
+        <p class="oc-title">希恩公爵 · 银蔷薇军团统帅</p>
+        <p class="oc-tip">点击查看完整档案 →</p>
+      </div>
     </div>
 
-    <div class="oc-info">
-      <div class="oc-banner"></div>
-      <div class="oc-avatar">🌸</div>
-      <h2>池恩</h2>
-      <p class="oc-title">希恩公爵 · 银蔷薇军团统帅</p>
-      
-      <div class="info-grid">
-        <div class="info-item">
+    <!-- 白屿卡片 -->
+    <div class="oc-card" data-character="baiyu">
+      <div class="oc-banner baiyu-banner"></div>
+      <div class="oc-avatar">📖</div>
+      <div class="oc-card-body">
+        <h2>白屿</h2>
+        <p class="oc-title">游学者 · 池恩的挚友</p>
+        <p class="oc-tip">点击查看完整档案 →</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 人物详情弹窗 -->
+  <div id="characterModal" class="modal">
+    <div class="modal-content character-modal-content">
+      <div class="modal-left character-modal-left">
+        <div class="char-banner" id="charBanner"></div>
+        <div class="char-avatar" id="charAvatar"></div>
+      </div>
+      <div class="modal-right">
+        <span id="charModalClose" class="modal-close-btn">&times;</span>
+        <div class="modal-tag" id="charTag"></div>
+        <h2 id="charName"></h2>
+        <p id="charTitle" class="char-subtitle"></p>
+
+        <div class="char-info-block">
           <h3>基本信息</h3>
-          <p>人类 / 22岁 / 女</p>
-          <p>身高：172cm</p>
-          <p>生日：6月15日</p>
+          <ul id="charBasic"></ul>
         </div>
-        <div class="info-item">
+        <div class="char-info-block">
           <h3>性格特质</h3>
-          <p>外表清冷寡言，内心柔软细腻</p>
-          <p>责任感极强，重视承诺</p>
-          <p>容易耳尖发红，不擅长表达情感</p>
+          <ul id="charPersonality"></ul>
         </div>
-        <div class="info-item">
+        <div class="char-info-block">
           <h3>能力特长</h3>
-          <p>剑术高超，精通军事指挥</p>
-          <p>擅长园艺，尤其精通蔷薇栽培</p>
-          <p>拥有敏锐的洞察力</p>
+          <ul id="charAbility"></ul>
         </div>
-        <div class="info-item">
+        <div class="char-info-block">
           <h3>人物语录</h3>
-          <p>"我会守护好这片土地，和这里的蔷薇。"</p>
-          <p>"不需要你的同情，我自己能行。"</p>
+          <p id="charQuote" class="char-quote"></p>
         </div>
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
   <!-- 3. 世界观板块 -->
   <section id="worldview" class="page-section">
     <div class="page-header">

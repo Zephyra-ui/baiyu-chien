@@ -346,48 +346,97 @@ body {
 }
 
 /* 对话互动 */
+/* 对话互动 */
 .chat-container {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto 60px;
   padding: 0 8%;
 }
 .chat-window {
-  height: 400px;
+  height: 420px;
   background: #fff;
-  border-radius: 8px;
-  padding: 24px;
+  border-radius: 12px;
+  padding: 20px 16px;
   overflow-y: auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
+
+/* 单条消息基础布局 */
 .chat-msg {
-  max-width: 70%;
-  margin-bottom: 16px;
-  padding: 12px 16px;
-  border-radius: 18px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  max-width: 78%;
   clear: both;
 }
+
+/* 池恩：左侧消息，头像在左 */
 .chat-msg.left {
-  float: left;
-  background: rgba(184,154,154,0.1);
-  color: #555;
+  align-self: flex-start;
 }
+
+/* 白屿：右侧消息，头像在右 */
 .chat-msg.right {
-  float: right;
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+/* 头像样式 */
+.msg-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.msg-avatar.pink {
+  background: rgba(184,154,154,0.15);
+}
+.msg-avatar.green {
+  background: rgba(138,168,153,0.15);
+}
+
+/* 气泡样式 */
+.msg-bubble {
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.msg-bubble.pink {
+  background: #f7f1ef;
+  color: #555;
+  border-bottom-left-radius: 4px;
+}
+.msg-bubble.green {
   background: #b89a9a;
   color: #fff;
+  border-bottom-right-radius: 4px;
 }
+
+/* 系统提示消息 */
 .chat-msg.system {
-  clear: both;
+  align-self: center;
+  max-width: 100%;
   text-align: center;
   color: #999;
-  font-size: 14px;
+  font-size: 13px;
 }
+
+/* 快捷话题 */
 .quick-topics {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 .topic-tag {
   padding: 8px 16px;
@@ -401,16 +450,24 @@ body {
 .topic-tag:hover {
   background: rgba(184,154,154,0.2);
 }
+
+/* 输入框区域 */
 .chat-input-area {
   display: flex;
   gap: 12px;
 }
 .chat-input {
   flex: 1;
-  padding: 12px 16px;
-  border: 1px solid #ddd;
+  padding: 12px 18px;
+  border: 1px solid #eee;
   border-radius: 24px;
-  font-size: 16px;
+  font-size: 15px;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.chat-input:focus {
+  border-color: #b89a9a;
 }
 .send-btn {
   padding: 12px 24px;
@@ -419,10 +476,39 @@ body {
   border: none;
   border-radius: 24px;
   cursor: pointer;
+  font-size: 15px;
   transition: background-color 0.3s;
 }
 .send-btn:hover {
   background: #9e7f7f;
+}
+
+/* 移动端聊天适配 */
+@media (max-width: 768px) {
+  .chat-window {
+    height: 360px;
+    padding: 16px 12px;
+  }
+  .chat-msg {
+    max-width: 85%;
+  }
+  .msg-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+  .msg-bubble {
+    font-size: 14px;
+    padding: 9px 12px;
+  }
+  .quick-topics {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+  .topic-tag {
+    flex-shrink: 0;
+  }
 }
 
 /* 日常小剧场 */
@@ -655,5 +741,113 @@ body {
     height: 34px;
     bottom: 20px;
     right: 20px;
+  }
+}
+/* 人物卡片补充样式 */
+.oc-card {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.oc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+.oc-tip {
+  font-size: 13px;
+  color: #b89a9a;
+  margin-top: 8px;
+  text-align: right;
+}
+.oc-card:nth-child(2) .oc-tip {
+  color: #8aa899;
+}
+
+/* 人物弹窗左侧 */
+.character-modal-left {
+  position: relative;
+  overflow: hidden;
+}
+.char-banner {
+  width: 100%;
+  height: 100%;
+}
+.char-avatar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* 人物弹窗内容 */
+.char-subtitle {
+  color: #999;
+  margin-bottom: 24px;
+}
+.char-info-block {
+  margin-bottom: 20px;
+}
+.char-info-block h3 {
+  font-size: 16px;
+  color: #b89a9a;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f0ece8;
+}
+.char-info-block ul {
+  list-style: none;
+  color: #555;
+}
+.char-info-block li {
+  margin-bottom: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.char-info-block li::before {
+  content: "·";
+  color: #b89a9a;
+  margin-right: 8px;
+  font-weight: bold;
+}
+.char-quote {
+  color: #777;
+  font-style: italic;
+  line-height: 1.8;
+  padding-left: 12px;
+  border-left: 3px solid #e8e2db;
+}
+
+/* 白屿主题色 */
+.character-modal-content.baiyu-theme .char-info-block h3 {
+  color: #8aa899;
+}
+.character-modal-content.baiyu-theme .char-info-block li::before {
+  color: #8aa899;
+}
+.character-modal-content.baiyu-theme .char-quote {
+  border-left-color: #d0ddd6;
+}
+
+/* 移动端人物弹窗适配 */
+@media (max-width: 768px) {
+  .character-modal-content {
+    flex-direction: column;
+  }
+  .character-modal-left {
+    height: 180px;
+    width: 100%;
+  }
+  .char-avatar {
+    width: 90px;
+    height: 90px;
+    font-size: 42px;
   }
 }

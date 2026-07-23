@@ -265,3 +265,109 @@ if (storyItems.length > 0) {
     });
   });
 }
+// ========== 人物档案详情弹窗 ==========
+const characterModal = document.getElementById('characterModal');
+const characterCards = document.querySelectorAll('.oc-card');
+
+if (characterCards.length > 0 && characterModal) {
+  const charModalClose = document.getElementById('charModalClose');
+  const modalContent = characterModal.querySelector('.character-modal-content');
+
+  // 人物完整数据
+  const characterData = {
+    chien: {
+      theme: 'chien-theme',
+      banner: 'linear-gradient(135deg, #b89a9a, #d6c4c4)',
+      avatar: '🌸',
+      tag: '银蔷薇军团统帅',
+      name: '池恩',
+      title: '希恩公爵 · 军团最高统帅',
+      basic: [
+        '种族：人类',
+        '年龄：22岁',
+        '身高：172cm',
+        '生日：6月15日',
+        '身份：希恩公国世袭公爵'
+      ],
+      personality: [
+        '外表清冷寡言，不擅长表露情绪',
+        '内心柔软细腻，对在意的人会默默付出',
+        '责任感极强，将公国与军团视作己任',
+        '容易耳尖发红，典型的口是心非',
+        '面对调侃会故作镇定，实则很容易害羞'
+      ],
+      ability: [
+        '剑术高超，一手霜薇剑法人尽皆知',
+        '精通军事指挥，擅长以少胜多的战术',
+        '擅长园艺，尤其精通蔷薇的栽培与养护',
+        '观察力敏锐，能轻易看穿他人的谎言',
+        '厨艺意外地不错，只做给自己和亲近的人'
+      ],
+      quote: '"我会守护好这片土地，和这里的蔷薇。不需要你的同情，我自己能行。"'
+    },
+    baiyu: {
+      theme: 'baiyu-theme',
+      banner: 'linear-gradient(135deg, #8aa899, #c4d4cb)',
+      avatar: '📖',
+      tag: '游历四方的学者',
+      name: '白屿',
+      title: '游学者 · 池恩的毕生挚友',
+      basic: [
+        '种族：人类',
+        '年龄：24岁',
+        '身高：183cm',
+        '生日：9月12日',
+        '身份：自由游历的青年学者'
+      ],
+      personality: [
+        '温和健谈，待人接物从容通透',
+        '爱笑，喜欢调侃池恩，分寸感极好',
+        '见多识广，对各地风土人情如数家珍',
+        '心思细腻，总能看穿池恩的口是心非',
+        '看似随性散漫，实则非常重情重义'
+      ],
+      ability: [
+        '博学多识，通晓历史、地理、草药等多门学问',
+        '精通医术与草药辨识，能处理常见伤病',
+        '口才极佳，擅长化解尴尬与谈判斡旋',
+        '厨艺精湛，会做各地的特色点心',
+        '身手不凡，但极少出手，习惯以理服人'
+      ],
+      quote: '"走遍万水千山，最想念的还是公爵府的花房。你嘴硬的样子，比蔷薇花还好看。"'
+    }
+  };
+
+  // 点击卡片打开弹窗
+  characterCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.dataset.character;
+      const data = characterData[key];
+      if (!data) return;
+
+      // 切换主题色
+      modalContent.className = 'modal-content character-modal-content ' + data.theme;
+      // 填充内容
+      document.getElementById('charBanner').style.background = data.banner;
+      document.getElementById('charAvatar').textContent = data.avatar;
+      document.getElementById('charTag').textContent = data.tag;
+      document.getElementById('charName').textContent = data.name;
+      document.getElementById('charTitle').textContent = data.title;
+      
+      document.getElementById('charBasic').innerHTML = data.basic.map(i => `<li>${i}</li>`).join('');
+      document.getElementById('charPersonality').innerHTML = data.personality.map(i => `<li>${i}</li>`).join('');
+      document.getElementById('charAbility').innerHTML = data.ability.map(i => `<li>${i}</li>`).join('');
+      document.getElementById('charQuote').textContent = data.quote;
+
+      characterModal.style.display = 'flex';
+    });
+  });
+
+  // 关闭弹窗
+  function closeCharModal() {
+    characterModal.style.display = 'none';
+  }
+  charModalClose.addEventListener('click', closeCharModal);
+  characterModal.addEventListener('click', e => {
+    if (e.target === characterModal) closeCharModal();
+  });
+}
