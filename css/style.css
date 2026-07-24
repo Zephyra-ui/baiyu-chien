@@ -827,6 +827,8 @@ body {
   display: none;
   color: #555;
   line-height: 1.75;
+  /* 核心：保留Word里的换行、分段，自动适配容器宽度换行 */
+  white-space: pre-line;
 }
 .story-item.active .story-content {
   display: block;
