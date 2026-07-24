@@ -32,7 +32,7 @@ window.addEventListener('hashchange', switchPage);
     <img src="./images/music-icon.png" alt="背景音乐">
     <audio id="bgMusic" loop preload="auto">
       <source src="./music/bgm.mp3" type="audio/mpeg">
-    
+    </audio>
   `;
 
   document.body.appendChild(musicBtn);
@@ -53,17 +53,19 @@ window.addEventListener('hashchange', switchPage);
 })();
 
 // ========== 穿搭画廊 详情弹窗 ==========
-// 页面初始化强制隐藏穿搭弹窗，防止异常残留空白弹窗
+// 【修复】只声明一次 outfitModal，并立即隐藏
 const outfitModal = document.getElementById('outfitModal');
-outfitModal.style.display = "none";
-const outfitModal = document.getElementById('outfitModal');
+if (outfitModal) {
+  outfitModal.style.display = 'none';
+}
+
 const outfitCards = document.querySelectorAll('.outfit-card');
 
 if (outfitCards.length > 0 && outfitModal) {
   const modalClose = document.getElementById('modalClose');
   const modalContent = outfitModal.querySelector('.outfit-modal-content');
 
-  // 完整服设数据
+  // 完整服设数据（与您原有数据一致，此处仅保留关键部分，请确保完整）
   const outfitData = {
     // ===== 池恩五套 =====
     "chien-feishu": {
@@ -291,18 +293,29 @@ if (outfitCards.length > 0 && outfitModal) {
       document.getElementById('modalEgg').textContent = data.egg;
 
       outfitModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // 防止背景滚动
     });
   });
 
   // 关闭弹窗
   function closeOutfitModal() {
     outfitModal.style.display = 'none';
+    document.body.style.overflow = '';
   }
-  modalClose.addEventListener('click', closeOutfitModal);
+  if (modalClose) {
+    modalClose.addEventListener('click', closeOutfitModal);
+  }
   outfitModal.addEventListener('click', e => {
     if (e.target === outfitModal) closeOutfitModal();
   });
+  // ESC键关闭
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && outfitModal.style.display === 'flex') {
+      closeOutfitModal();
+    }
+  });
 }
+
 // ========== 对话互动：预设静态对话 ==========
 const chatWindow = document.getElementById('chatWindow');
 const topicTags = document.querySelectorAll('.topic-tag');
@@ -418,7 +431,6 @@ const storyTabs = document.querySelectorAll('.story-tab');
 // 筛选标签切换
 storyTabs.forEach(tab => {
   tab.addEventListener('click', () => {
-    // 切换激活样式
     storyTabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     const filterType = tab.dataset.type;
@@ -429,7 +441,7 @@ storyTabs.forEach(tab => {
         item.style.display = 'block';
       }else{
         item.style.display = 'none';
-        item.classList.remove('active'); // 筛选时自动收起
+        item.classList.remove('active');
       }
     });
   });
@@ -540,15 +552,24 @@ if (characterCards.length > 0 && characterModal) {
       document.getElementById('charQuote').textContent = data.quote;
 
       characterModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     });
   });
 
   // 关闭弹窗
   function closeCharModal() {
     characterModal.style.display = 'none';
+    document.body.style.overflow = '';
   }
-  charModalClose.addEventListener('click', closeCharModal);
+  if (charModalClose) {
+    charModalClose.addEventListener('click', closeCharModal);
+  }
   characterModal.addEventListener('click', e => {
     if (e.target === characterModal) closeCharModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && characterModal.style.display === 'flex') {
+      closeCharModal();
+    }
   });
 }
