@@ -869,7 +869,31 @@ body {
     flex-shrink: 0;
   }
 }
-/* 日常小剧场 */
+
+/* ========== 故事集板块 ========== */
+.story-filter-wrap {
+  display: flex;
+  gap: 12px;
+  padding: 0 8% 24px;
+  flex-wrap: wrap;
+}
+.story-tab {
+  padding: 7px 18px;
+  border-radius: 20px;
+  background: #f1ece9;
+  color: #777;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.story-tab.active {
+  background: #a04a5c;
+  color: #fff;
+}
+.story-tab:hover:not(.active) {
+  background: #e8e2dd;
+}
+
 .story-list {
   max-width: 800px;
   margin: 0 auto 60px;
@@ -903,9 +927,26 @@ body {
   padding: 0 24px 24px;
   display: none;
   color: #555;
+  line-height: 1.75;
 }
 .story-item.active .story-content {
   display: block;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .story-filter-wrap {
+    padding: 0 20px 20px;
+  }
+  .story-list {
+    padding: 0 20px 40px;
+  }
+  .story-header {
+    padding: 16px 20px;
+  }
+  .story-content {
+    padding: 0 20px 20px;
+  }
 }
 
 /* 音乐按钮：纯自定义透明图标 */

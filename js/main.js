@@ -408,20 +408,45 @@ if (sendBtn && chatInput) {
   });
 }
 
-// ========== 日常小剧场 手风琴折叠 ==========
+// ========== 故事集：分类筛选 + 手风琴折叠 ==========
 const storyItems = document.querySelectorAll('.story-item');
-if (storyItems.length > 0) {
-  storyItems.forEach(item => {
-    const header = item.querySelector('.story-header');
-    header.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-      storyItems.forEach(i => i.classList.remove('active'));
-      if (!isActive) {
-        item.classList.add('active');
+const storyTabs = document.querySelectorAll('.story-tab');
+
+// 筛选标签切换
+storyTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    // 切换激活样式
+    storyTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filterType = tab.dataset.type;
+
+    storyItems.forEach(item => {
+      const tag = item.dataset.tag;
+      if(filterType === 'all' || tag === filterType){
+        item.style.display = 'block';
+      }else{
+        item.style.display = 'none';
+        item.classList.remove('active'); // 筛选时自动收起
       }
     });
   });
-}
+});
+
+// 条目展开折叠
+storyItems.forEach(item => {
+  const header = item.querySelector('.story-header');
+  header.addEventListener('click', () => {
+    const isActive = item.classList.contains('active');
+    // 可选：开启下面一行，实现「同时只打开一个故事」
+    // storyItems.forEach(i => i.classList.remove('active'));
+    if (!isActive) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+});
+
 // ========== 人物档案详情弹窗 ==========
 const characterModal = document.getElementById('characterModal');
 const characterCards = document.querySelectorAll('.oc-card');
