@@ -53,6 +53,9 @@ window.addEventListener('hashchange', switchPage);
 })();
 
 // ========== 穿搭画廊 详情弹窗 ==========
+// 页面初始化强制隐藏穿搭弹窗，防止异常残留空白弹窗
+const outfitModal = document.getElementById('outfitModal');
+outfitModal.style.display = "none";
 const outfitModal = document.getElementById('outfitModal');
 const outfitCards = document.querySelectorAll('.outfit-card');
 
