@@ -1,4 +1,25 @@
-/* ====================== 全局样式重置 ====================== */
+/* ============================================================
+   1. 字体声明（请确保 .ttf 文件放在 ./fonts/ 目录下）
+   ============================================================ */
+@font-face {
+  font-family: 'YangRenDongZhuShiTi';
+  src: url('./fonts/YangRenDongZhuShiTi-Regular-2.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PingFangSanShengTi';
+  src: url('./fonts/PingFangSanShengTi-2.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   2. 全局重置 & 基础
+   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -6,1023 +27,608 @@
 }
 
 body {
-  font-family: 'Microsoft YaHei', sans-serif;
-  background-color: #f8f5f2;
-  color: #333;
-  line-height: 1.6;
+  font-family: 'PingFangSanShengTi', 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+  background: #fcf9f7;          /* 柔米白底 */
+  color: #2c2522;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  transition: background 0.3s;
 }
 
-/* ====================== 公共页面头部样式 ====================== */
-.page-header {
-  text-align: center;
-  padding: 60px 0 40px;
+a {
+  text-decoration: none;
+  color: inherit;
 }
-.page-header h1 {
-  font-size: 36px;
-  color: #b89a9a;
-  margin-bottom: 12px;
-}
-.page-header p {
-  font-size: 18px;
-  color: #999;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-/* ====================== 导航栏样式 ====================== */
+/* ============================================================
+   3. 标题、品牌、导航等 – 使用杨任东竹石体
+   ============================================================ */
+h1, h2, h3, h4,
+.section-title,
+.nav-brand,
+.modal-title,
+.modal-tag,
+.outfit-card h4,
+.oc-card .name,
+.story-header .title,
+.char-name,
+.char-title,
+.nav-menu a {
+  font-family: 'YangRenDongZhuShiTi', 'Georgia', 'Times New Roman', serif;
+  font-weight: normal;
+  letter-spacing: 0.04em;
+}
+
+/* 大标题微调 */
+.section-title {
+  font-weight: 600;       /* 如果竹石体不支持加粗，浏览器会模拟，若变形可删此行 */
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  color: #4a3a3a;
+  border-left: 5px solid #b8a09a;
+  padding-left: 1rem;
+}
+
+/* ============================================================
+   4. 导航栏
+   ============================================================ */
 .navbar {
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(10px);
-  padding: 20px 8%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 250, 245, 0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  z-index: 1000;
+  padding: 0.6rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid #e8e2db;
 }
-.nav-logo {
-  font-size: 20px;
-  font-weight: bold;
+
+.nav-brand {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #8b3a4a;
+  letter-spacing: 1px;
+}
+.nav-brand span {
   color: #b89a9a;
 }
+
 .nav-menu {
   display: flex;
-  gap: 30px;
+  gap: 1.8rem;
+  list-style: none;
 }
 .nav-menu a {
-  text-decoration: none;
-  color: #555;
-  transition: color 0.3s;
+  font-family: 'YangRenDongZhuShiTi', serif;
+  font-size: 1rem;
+  color: #4a3f3f;
+  padding: 0.3rem 0;
+  border-bottom: 2px solid transparent;
+  transition: 0.25s;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 .nav-menu a:hover {
   color: #b89a9a;
+  border-bottom-color: #b89a9a;
 }
 
-/* ====================== 通用按钮样式 ====================== */
-.btn {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #b89a9a;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+/* ============================================================
+   5. 页面区块
+   ============================================================ */
+.page-section {
+  display: none;
+  padding: 80px 2rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  animation: fadeUp 0.4s ease;
 }
-.btn:hover {
-  background-color: #9e7f7f;
+.page-section.active {
+  display: block;
+}
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(18px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-/* ====================== 【1】首页板块样式 ====================== */
-/* 首页Hero区 */
-.hero {
-  height: 600px;
-  background: url('../images/shouyebeijing.png') center/cover no-repeat;
-  position: relative;
+/* ============================================================
+   6. 首页
+   ============================================================ */
+.home-hero {
   display: flex;
-  align-items: center;
-  padding: 0 12%;
-}
-.hero-content {
-  color: #fff;
-}
-.hero h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-.hero-desc {
-  font-size: 20px;
-  margin-bottom: 30px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-.hero-btns {
-  display: flex;
-  gap: 20px;
-}
-
-/* 引言区 */
-.quote-section {
-  text-align: center;
-  padding: 60px 8%;
-  background: rgba(184,154,154,0.05);
-}
-.quote-text {
-  font-size: 24px;
-  color: #b89a9a;
-  margin-bottom: 16px;
-  line-height: 1.8;
-}
-.quote-author {
-  font-size: 16px;
-  color: #999;
-}
-
-/* ====================== 【2】人物档案板块样式 ====================== */
-.oc-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 36px;
-  padding: 0 8% 60px;
-}
-
-.oc-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
-  position: relative;
-  cursor: pointer;
-  transition: all 0.35s ease;
-}
-.oc-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-}
-
-/* 顶部横幅 */
-.oc-banner {
-  height: 150px;
-  position: relative;
-}
-.chien-banner {
-  background: linear-gradient(135deg, #8b3a4a 0%, #c97a8a 60%, #e6b8c2 100%);
-}
-.baiyu-banner {
-  background: linear-gradient(135deg, #d8e6e0 0%, #eef5f2 60%, #fafcfb 100%);
-}
-
-/* 头像 */
-.oc-avatar {
-  width: 84px;
-  height: 84px;
-  background: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 38px;
-  position: absolute;
-  left: 28px;
-  bottom: -42px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-  z-index: 2;
-  border: 3px solid #fff;
-}
-
-/* 卡片内容 */
-.oc-card-body {
-  padding: 60px 28px 24px;
-}
-.oc-card-body h2 {
-  font-size: 26px;
-  color: #222;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-.oc-title {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 14px;
-}
-
-/* 核心标签 */
-.oc-tags {
-  display: flex;
-  gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 16px;
-}
-.oc-tags span {
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 12px;
-  background: rgba(160, 74, 92, 0.08);
-  color: #a04a5c;
-}
-.oc-card:nth-child(2) .oc-tags span {
-  background: rgba(125, 155, 145, 0.1);
-  color: #7d9b91;
-}
-
-.oc-tip {
-  font-size: 13px;
-  color: #a04a5c;
-  text-align: right;
-  margin-top: 8px;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
-.oc-card:hover .oc-tip {
-  opacity: 1;
-}
-.oc-card:nth-child(2) .oc-tip {
-  color: #7d9b91;
-}
-
-/* 人物弹窗内容 */
-.character-modal-content {
-  width: 860px;
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  background:#fff;
-}
-
-/* 左侧横幅区 */
-.character-modal-left {
-  width: 38%;
-  position: relative;
-  overflow: hidden;
-}
-.char-banner {
-  width: 100%;
-  height: 100%;
-}
-.char-avatar {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 130px;
-  height: 130px;
-  background: #fff;
-  border-radius: 50%;
-  display: flex;
+  gap: 2.5rem;
   align-items: center;
   justify-content: center;
-  font-size: 60px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  border: 4px solid #fff;
+  margin-top: 1rem;
 }
-
-/* 右侧内容区 */
-.character-modal-content .modal-right {
-  width: 62%;
-  padding: 36px 32px;
-  position: relative;
+.home-hero .hero-text {
+  flex: 1 1 300px;
 }
-
-.char-header {
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #f3efec;
-}
-.char-header h2 {
-  font-size: 26px;
-  color: #222;
-  margin: 8px 0 4px;
-  font-weight: 600;
-}
-.char-subtitle {
-  color: #999;
-  font-size: 14px;
-  margin: 0;
-}
-
-/* 信息模块通用 */
-.char-info-block {
-  margin-bottom: 20px;
-}
-.char-info-block h3 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  padding-left: 10px;
-  border-left: 3px solid #a04a5c;
-  color: #333;
-}
-.char-info-block ul {
-  list-style: none;
-  color: #555;
-  padding: 0;
-}
-.char-info-block li {
-  margin-bottom: 7px;
-  font-size: 14px;
-  line-height: 1.7;
-  padding-left: 10px;
-  position: relative;
-}
-.char-info-block li::before {
-  content: "";
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #ccc;
-  position: absolute;
-  left: 0;
-  top: 9px;
-}
-
-/* 基本信息两列网格 */
-.char-basic-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 6px 12px;
-}
-
-/* 性格+能力并排 */
-.char-info-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-/* 语录模块 */
-.char-quote-block {
-  margin-bottom: 0;
-}
-.char-quote {
-  color: #666;
-  font-style: italic;
-  line-height: 1.9;
-  padding: 14px 18px;
-  background: #faf7f5;
-  border-radius: 8px;
-  border-left: 3px solid #e6c5cd;
-  position: relative;
-  font-size: 14px;
-  margin: 0;
-}
-.char-quote::before {
-  content: "“";
-  font-size: 32px;
-  color: #d8c0c6;
-  position: absolute;
-  top: 2px;
-  left: 10px;
-  line-height: 1;
-  font-family: serif;
-}
-
-/* 白屿弹窗主题色 */
-.character-modal-content.baiyu-theme .char-info-block h3 {
-  border-left-color: #7d9b91;
-}
-.character-modal-content.baiyu-theme .char-info-block li::before {
-  background: #b8ccc5;
-}
-.character-modal-content.baiyu-theme .char-quote {
-  background: #f6f9f8;
-  border-left-color: #d4e2dd;
-}
-.character-modal-content.baiyu-theme .char-quote::before {
-  color: #c8d8d2;
-}
-.character-modal-content.baiyu-theme .char-header {
-  border-bottom-color: #eef2f0;
-}
-
-/* ====================== 【3】世界观板块样式 ====================== */
-.world-card {
-  background: #fff;
-  padding: 32px;
-  margin: 0 8% 24px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-.world-card h3 {
-  font-size: 20px;
-  color: #b89a9a;
-  margin-bottom: 16px;
-}
-.world-card p {
-  margin-bottom: 12px;
-  color: #555;
-}
-
-/* ====================== 【4】穿搭画廊板块样式 ====================== */
-.gallery-section {
-  padding: 0 8% 48px;
-}
-.gallery-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  padding-left: 12px;
-  border-left: 4px solid;
-}
-.chien-title {
+.home-hero .hero-text h2 {
+  font-family: 'YangRenDongZhuShiTi', serif;
+  font-size: 2.8rem;
+  font-weight: normal;
   color: #8b3a4a;
-  border-color: #a04a5c;
 }
-.baiyu-title {
-  color: #5f7e73;
-  border-color: #7d9b91;
+.home-hero .hero-text p {
+  font-size: 1.1rem;
+  color: #5a4f4f;
+  margin: 1rem 0;
+}
+.home-hero .hero-image {
+  flex: 1 1 300px;
+  background: #e8ddd5;
+  border-radius: 20px;
+  padding: 1rem;
+  text-align: center;
+  font-size: 3rem;
+  color: #8b3a4a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
-.gallery-grid {
+/* ============================================================
+   7. 穿搭画廊
+   ============================================================ */
+.outfit-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
-.gallery-section:nth-child(3) .gallery-grid {
-  grid-template-columns: repeat(4, 1fr);
-}
-
 .outfit-card {
   background: #fff;
-  border-radius: 10px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.25s;
+  border: 1px solid #ede6e0;
+  padding: 1rem;
+  text-align: center;
 }
 .outfit-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(139, 58, 74, 0.08);
+  border-color: #dbb8b8;
 }
 .outfit-card img {
   width: 100%;
-  height: 220px;
+  height: 180px;
   object-fit: cover;
-}
-.outfit-info {
-  padding: 14px 16px 18px;
-}
-.outfit-tag {
-  display: inline-block;
-  padding: 2px 8px;
   border-radius: 10px;
-  font-size: 12px;
-  margin-bottom: 8px;
+  background: #f3efec;
 }
-.chien-card .outfit-tag {
-  background: rgba(160, 74, 92, 0.1);
-  color: #a04a5c;
+.outfit-card h4 {
+  font-family: 'YangRenDongZhuShiTi', serif;
+  margin: 0.6rem 0 0.2rem;
+  font-weight: normal;
+  color: #3a2f2f;
 }
-.baiyu-card .outfit-tag {
-  background: rgba(125, 155, 145, 0.12);
-  color: #5f7e73;
-}
-.outfit-info h3 {
-  font-size: 16px;
-  color: #222;
-  margin-bottom: 4px;
-  font-weight: 600;
-}
-.outfit-info p {
-  font-size: 13px;
-  color: #999;
+.outfit-card .tag {
+  font-size: 0.75rem;
+  background: #f0e8e8;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  color: #7a5a5a;
+  display: inline-block;
+  font-family: 'PingFangSanShengTi', sans-serif;
 }
 
-/* ====================== 弹窗全局基础样式（所有弹窗共用，修复空白弹窗BUG） ====================== */
-.modal {
-  display: none; /* 页面载入默认隐藏，杜绝空白弹窗 */
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 999;
-  align-items: center;
-  justify-content: center;
-  overflow-y: auto;
-  padding: 20px 0;
-}
-.modal-close-btn {
-  position: absolute;
-  top: 16px;
-  right: 20px;
-  font-size: 24px;
-  color: #aaa;
-  cursor: pointer;
-  transition: color 0.25s;
-  line-height: 1;
-  z-index: 10;
-}
-.modal-close-btn:hover {
-  color: #666;
-}
-
-/* ========== 穿搭详情弹窗 ========== */
-.outfit-modal-content {
-  display: flex;
-  width: 900px;
-  max-height: 85vh;
-  overflow: hidden;
-  border-radius: 12px;
-  background: #ffffff;
-}
-.outfit-modal-left {
-  width: 42%;
-  background: #f8f5f2;
-}
-.outfit-modal-left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.outfit-modal-right {
-  width: 58%;
-  padding: 32px 28px;
-  position: relative;
-  overflow-y: auto;
-  max-height: 85vh;
-}
-
-.outfit-modal-header {
-  margin-bottom: 20px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid #f0ece8;
-}
-.outfit-modal-header h2 {
-  font-size: 22px;
-  color: #222;
-  margin: 8px 0 4px;
-  font-weight: 600;
-}
-.outfit-subtitle {
-  color: #999;
-  font-size: 14px;
-  margin: 0;
-}
-
-.outfit-detail-group {
-  margin-bottom: 16px;
-}
-.outfit-detail-group h4 {
-  font-size: 14px;
-  font-weight: 600;
-  color: #a04a5c;
-  margin-bottom: 8px;
-}
-.outfit-detail-group p {
-  font-size: 13.5px;
-  color: #555;
-  line-height: 1.7;
-  margin: 0;
-}
-.outfit-detail-group ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.outfit-detail-group li {
-  font-size: 13.5px;
-  color: #555;
-  line-height: 1.7;
-  padding-left: 12px;
-  position: relative;
-  margin-bottom: 4px;
-}
-.outfit-detail-group li::before {
-  content: "·";
-  position: absolute;
-  left: 0;
-  color: #a04a5c;
-  font-weight: bold;
-}
-
-/* 白屿弹窗主题色 */
-.outfit-modal-content.baiyu-theme .outfit-detail-group h4 {
-  color: #5f7e73;
-}
-.outfit-modal-content.baiyu-theme .outfit-detail-group li::before {
-  color: #7d9b91;
-}
-.outfit-modal-content.baiyu-theme .outfit-modal-header {
-  border-bottom-color: #eef2f0;
-}
-
-/* 互动彩蛋模块 */
-.outfit-egg {
-  background: #faf7f5;
-  padding: 14px 16px;
-  border-radius: 8px;
-  border-left: 3px solid #e6c5cd;
-  margin-bottom: 0;
-}
-.outfit-egg p {
-  font-size: 13px;
-  color: #666;
-  line-height: 1.8;
-}
-.outfit-modal-content.baiyu-theme .outfit-egg {
-  background: #f6f9f8;
-  border-left-color: #d4e2dd;
-}
-
-/* ====================== 【5】对话互动板块样式 ====================== */
+/* ============================================================
+   8. 对话互动
+   ============================================================ */
 .chat-container {
-  max-width: 720px;
-  margin: 0 auto 60px;
-  padding: 0 8%;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  border: 1px solid #ede6e0;
 }
 .chat-window {
-  height: 420px;
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px 16px;
+  height: 340px;
   overflow-y: auto;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-  margin-bottom: 20px;
+  padding-right: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
 }
-
-/* 单条消息基础布局 */
 .chat-msg {
   display: flex;
-  align-items: flex-end;
-  gap: 10px;
-  max-width: 78%;
+  align-items: flex-start;
+  gap: 0.6rem;
+  max-width: 85%;
 }
-
-/* 池恩：左侧消息，头像在左，气泡在右 */
 .chat-msg.left {
   align-self: flex-start;
 }
-
-/* 白屿：右侧消息，气泡在左，头像在最右 */
 .chat-msg.right {
   align-self: flex-end;
-  justify-content: flex-end;
+  flex-direction: row-reverse;
 }
-
-/* 头像样式 */
 .msg-avatar {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  background: #f0e8e8;
 }
-.msg-avatar.pink {
-  background: rgba(184,154,154,0.15);
-}
-.msg-avatar.green {
-  background: rgba(138,168,153,0.15);
-}
-
-/* 气泡样式 */
+.msg-avatar.pink { background: #f5e0e0; }
+.msg-avatar.green { background: #dde8e0; }
 .msg-bubble {
-  padding: 10px 14px;
+  padding: 0.6rem 1rem;
   border-radius: 16px;
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 0.95rem;
   word-break: break-word;
+  background: #f3efec;
 }
-.msg-bubble.pink {
-  background: #f7f1ef;
-  color: #555;
-  border-bottom-left-radius: 4px;
-}
-.msg-bubble.green {
-  background: #b89a9a;
-  color: #fff;
-  border-bottom-right-radius: 4px;
-}
+.msg-bubble.pink { background: #f5e0e0; }
+.msg-bubble.green { background: #dde8e0; }
 
-/* 系统提示消息 */
-.chat-msg.system {
-  align-self: center;
-  max-width: 100%;
-  text-align: center;
-  color: #999;
-  font-size: 13px;
-}
-
-/* 快捷话题 */
-.quick-topics {
+.chat-topics {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
 }
 .topic-tag {
-  padding: 8px 16px;
-  background: rgba(184,154,154,0.1);
-  color: #b89a9a;
-  border-radius: 20px;
-  font-size: 14px;
+  background: #f3efec;
+  border: none;
+  padding: 0.3rem 1.2rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  color: #4a3f3f;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: 0.2s;
+  font-family: 'PingFangSanShengTi', sans-serif;
 }
 .topic-tag:hover {
-  background: rgba(184,154,154,0.2);
+  background: #e8ddd5;
+  color: #8b3a4a;
 }
-
-/* 输入框区域 */
 .chat-input-area {
   display: flex;
-  gap: 12px;
+  gap: 0.6rem;
 }
 .chat-input {
   flex: 1;
-  padding: 12px 18px;
-  border: 1px solid #eee;
-  border-radius: 24px;
-  font-size: 15px;
-  background: #fff;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ddd6d0;
+  border-radius: 30px;
   outline: none;
-  transition: border-color 0.3s;
+  font-size: 0.95rem;
+  background: #fcfaf8;
+  font-family: 'PingFangSanShengTi', sans-serif;
 }
 .chat-input:focus {
   border-color: #b89a9a;
 }
 .send-btn {
-  padding: 12px 24px;
   background: #b89a9a;
   color: #fff;
   border: none;
-  border-radius: 24px;
+  padding: 0.6rem 1.8rem;
+  border-radius: 30px;
+  font-size: 0.95rem;
   cursor: pointer;
-  font-size: 15px;
-  transition: background-color 0.3s;
+  transition: 0.2s;
+  font-family: 'PingFangSanShengTi', sans-serif;
 }
 .send-btn:hover {
-  background: #9e7f7f;
+  background: #a07e7e;
 }
 
-/* ====================== 【6】故事集板块样式 ====================== */
-.story-filter-wrap {
+/* ============================================================
+   9. 故事集
+   ============================================================ */
+.story-tabs {
   display: flex;
-  gap: 12px;
-  padding: 0 8% 24px;
+  gap: 0.6rem;
   flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
 .story-tab {
-  padding: 7px 18px;
-  border-radius: 20px;
-  background: #f1ece9;
-  color: #777;
-  font-size: 14px;
+  background: #f3efec;
+  border: none;
+  padding: 0.4rem 1.4rem;
+  border-radius: 30px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  font-size: 0.9rem;
+  color: #4a3f3f;
+  transition: 0.2s;
+  font-family: 'PingFangSanShengTi', sans-serif;
 }
 .story-tab.active {
-  background: #a04a5c;
+  background: #b89a9a;
   color: #fff;
-}
-.story-tab:hover:not(.active) {
-  background: #e8e2dd;
-}
-
-.story-list {
-  max-width: 800px;
-  margin: 0 auto 60px;
-  padding: 0 8%;
 }
 .story-item {
   background: #fff;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-radius: 16px;
+  border: 1px solid #ede6e0;
+  margin-bottom: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
 }
 .story-header {
-  padding: 20px 24px;
+  padding: 1rem 1.2rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #fcfaf8;
+  transition: 0.2s;
 }
-.story-header h3 {
-  font-size: 18px;
-  color: #333;
+.story-header:hover {
+  background: #f8f3f0;
 }
-.toggle-icon {
-  color: #999;
-  transition: transform 0.3s;
+.story-header .title {
+  font-family: 'YangRenDongZhuShiTi', serif;
+  font-weight: normal;
+  letter-spacing: 0.04em;
 }
-.story-item.active .toggle-icon {
+.story-header .arrow {
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+.story-item.active .arrow {
   transform: rotate(180deg);
 }
-.story-content {
-  padding: 0 24px 24px;
-  display: none;
-  color: #555;
-  line-height: 1.75;
+.story-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 1.2rem;
 }
-.story-item.active .story-content {
-  display: block;
+.story-item.active .story-body {
+  max-height: 400px;
+  padding: 0.8rem 1.2rem 1.2rem;
+}
+.story-body p {
+  margin: 0.4rem 0;
+  color: #4a3f3f;
 }
 
-/* ====================== 悬浮音乐按钮 ====================== */
-.music-float-btn {
+/* ============================================================
+   10. 人物档案
+   ============================================================ */
+.oc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.8rem;
+  margin-top: 1.5rem;
+}
+.oc-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+  cursor: pointer;
+  transition: 0.25s;
+  border: 1px solid #ede6e0;
+}
+.oc-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(139,58,74,0.08);
+}
+.oc-card .avatar {
+  font-size: 3.2rem;
+  margin-bottom: 0.4rem;
+}
+.oc-card .name {
+  font-family: 'YangRenDongZhuShiTi', serif;
+  font-size: 1.3rem;
+  font-weight: normal;
+}
+.oc-card .role {
+  color: #7a5a5a;
+  font-size: 0.9rem;
+  font-family: 'PingFangSanShengTi', sans-serif;
+}
+
+/* ============================================================
+   11. 弹窗（通用）
+   ============================================================ */
+.modal-overlay {
+  display: none;
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 40px;
-  height: 40px;
-  background: transparent;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+.modal-overlay.active {
+  display: flex;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 28px;
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  animation: modalIn 0.3s ease;
+}
+@keyframes modalIn {
+  0% { opacity: 0; transform: scale(0.96) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  background: none;
   border: none;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #7a5a5a;
+  padding: 0 0.2rem;
+  line-height: 1;
+  z-index: 10;
+}
+.modal-close:hover {
+  color: #3a2f2f;
+}
+
+/* 穿搭弹窗专属 */
+.outfit-modal-content .modal-tag {
+  display: inline-block;
+  background: #f0e8e8;
+  padding: 0.2rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #6a4f4f;
+  font-family: 'PingFangSanShengTi', sans-serif;
+}
+.outfit-modal-content .modal-title {
+  font-family: 'YangRenDongZhuShiTi', serif;
+  font-size: 1.8rem;
+  font-weight: normal;
+  margin: 0.4rem 0 0;
+}
+.outfit-modal-content .modal-subtitle {
+  color: #7a5a5a;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.outfit-modal-content .modal-img {
+  border-radius: 16px;
+  margin: 1rem 0;
+  background: #f3efec;
+  max-height: 400px;
+  object-fit: cover;
+  width: 100%;
+}
+.outfit-modal-content .detail-block {
+  margin: 1.2rem 0;
+}
+.outfit-modal-content .detail-block h4 {
+  font-family: 'YangRenDongZhuShiTi', serif;
+  font-weight: normal;
+  color: #4a3a3a;
+  margin-bottom: 0.3rem;
+  border-bottom: 1px solid #eee9e6;
+  padding-bottom: 0.2rem;
+}
+.outfit-modal-content .detail-block ul {
+  padding-left: 1.2rem;
+  margin: 0.3rem 0;
+}
+.outfit-modal-content .detail-block li {
+  margin: 0.2rem 0;
+}
+.outfit-modal-content .egg {
+  background: #f8f3f0;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  font-style: italic;
+  color: #4a3f3f;
+  margin-top: 1rem;
+  border-left: 4px solid #b89a9a;
+  font-family: 'PingFangSanShengTi', sans-serif;
+}
+
+/* 主题色 */
+.chien-theme .modal-tag { background: #f0e0e0; color: #8b3a4a; }
+.baiyu-theme .modal-tag { background: #dde8e0; color: #3a6a5a; }
+
+/* 人物弹窗 */
+.character-modal-content .char-banner {
+  height: 120px;
+  border-radius: 16px;
+  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.character-modal-content .char-name {
+  font-family: 'YangRenDongZhuShiTi', serif;
+  font-size: 2rem;
+  font-weight: normal;
+}
+.character-modal-content .char-title {
+  color: #6a5a5a;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.character-modal-content .char-quote {
+  background: #f8f3f0;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  font-style: italic;
+  border-left: 4px solid #b89a9a;
+  margin-top: 1rem;
+  font-family: 'PingFangSanShengTi', sans-serif;
+}
+
+/* ============================================================
+   12. 浮动音乐按钮
+   ============================================================ */
+.music-float-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   cursor: pointer;
-  z-index: 9999;
-  transition: transform 0.3s ease;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eee9e6;
+  transition: 0.25s;
 }
 .music-float-btn:hover {
-  transform: scale(1.15);
+  transform: scale(1.04);
 }
 .music-float-btn img {
-  width: 100%;
-  height: 100%;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
-  display: block;
+  transition: 0.4s;
 }
 .music-float-btn.playing img {
-  animation: iconRotate 10s linear infinite;
+  animation: spin 4s linear infinite;
 }
-@keyframes iconRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* ====================== 页面切换核心样式 ====================== */
-.page-section {
-  display: none;
-}
-.page-section.active {
-  display: block;
+@keyframes spin {
+  100% { transform: rotate(360deg); }
 }
 
-/* ====================== 全局移动端适配 ====================== */
-@media (max-width: 768px) {
-  .page-header h1 {
-    font-size: 26px;
-  }
-  .page-header {
-    padding: 40px 20px 32px;
-  }
-  
-  .navbar {
-    padding: 16px 20px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 16px;
-  }
-  .nav-logo {
-    flex-shrink: 0;
-    font-size: 16px;
-  }
-  .nav-menu {
-    flex-shrink: 0;
-    gap: 20px;
-    font-size: 14px;
-    padding-bottom: 2px;
-  }
-  .navbar::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .hero {
-    height: 420px;
-    padding: 0 24px;
-  }
-  .hero h1 {
-    font-size: 30px;
-  }
-  .hero-desc {
-    font-size: 14px;
-  }
-  .hero-btns {
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-  }
-  .btn {
-    width: 100%;
-    text-align: center;
-  }
-  
-  .quote-text {
-    font-size: 18px;
-  }
-  
-  .oc-container {
-    grid-template-columns: 1fr;
-    padding: 0 20px 40px;
-    gap: 28px;
-  }
-  .oc-banner {
-    height: 130px;
-  }
-  .oc-avatar {
-    width: 74px;
-    height: 74px;
-    font-size: 32px;
-    left: 20px;
-    bottom: -37px;
-  }
-  .oc-card-body {
-    padding: 52px 20px 20px;
-  }
-
-  .character-modal-content {
-    flex-direction: column;
-    width: 92vw;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
-  .character-modal-left {
-    width: 100%;
-    height: 160px;
-  }
-  .char-avatar {
-    width: 90px;
-    height: 90px;
-    font-size: 42px;
-  }
-  .character-modal-content .modal-right {
-    width: 100%;
-    padding: 28px 20px 24px;
-  }
-  .char-info-row {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  .char-basic-list {
-    grid-template-columns: 1fr;
-  }
-
-  .world-card {
-    padding: 20px 24px;
-  }
-  
-  .gallery-section {
-    padding: 0 20px 40px;
-  }
-  .gallery-grid,
-  .gallery-section:nth-child(3) .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .outfit-card img {
-    height: 160px;
-  }
-  .outfit-info {
-    padding: 12px 14px 16px;
-  }
-  .outfit-info h3 {
-    font-size: 14px;
-  }
-
-  .outfit-modal-content {
-    flex-direction: column;
-    width: 92vw;
-    max-height: 90vh;
-  }
-  .outfit-modal-left,
-  .outfit-modal-right {
-    width: 100%;
-  }
-  .outfit-modal-left {
-    height: 260px;
-  }
-  .outfit-modal-right {
-    padding: 24px 20px;
-  }
-
-  .chat-window {
-    height: 320px;
-    padding: 16px 12px;
-  }
-  .chat-msg {
-    max-width: 85%;
-  }
-  .msg-avatar {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-  }
-  .msg-bubble {
-    font-size: 14px;
-    padding: 9px 12px;
-  }
-  .quick-topics {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 4px;
-  }
-  .topic-tag {
-    flex-shrink: 0;
-  }
-
-  .story-filter-wrap {
-    padding: 0 20px 20px;
-  }
-  .story-list {
-    padding: 0 20px 40px;
-  }
-  .story-header {
-    padding: 16px 20px;
-  }
-  .story-content {
-    padding: 0 20px 20px;
-  }
-  
-  .music-float-btn {
-    width: 34px;
-    height: 34px;
-    bottom: 20px;
-    right: 20px;
-  }
+/* ============================================================
+   13. 响应式
+   ============================================================ */
+@media (max-width: 640px) {
+  .navbar { flex-wrap: wrap; gap: 0.5rem; padding: 0.6rem 1rem; }
+  .nav-menu { gap: 0.8rem; flex-wrap: wrap; }
+  .page-section { padding: 80px 1rem 2rem; }
+  .modal-content { padding: 1.2rem; }
 }
