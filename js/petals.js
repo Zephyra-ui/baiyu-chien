@@ -4,9 +4,10 @@
  * 特点：随机大小、随机速度、随机左右摇摆、触底自动移除
  */
 
-function createPetal() {
+// 粉紫色发光蔷薇花瓣飘落，匹配你提供的参考画面质感
+function createRosePetal() {
   const petal = document.createElement('div');
-  petal.className = 'petal';
+  petal.classList.add('rose-petal');
 
   // 随机花瓣颜色，偏蔷薇色系
   const colors = [
@@ -16,42 +17,39 @@ function createPetal() {
     '#c97a8a',
     '#e8d5d5'
   ];
-  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  
+  const color = petalColors[Math.floor(Math.random() * petalColors.length)];
 
-  // 随机大小
-  const size = Math.random() * 12 + 8;
-
-  // 初始位置：屏幕顶部随机水平位置
-  const startX = Math.random() * window.innerWidth;
-
-  // 随机下落速度
-  const fallDuration = Math.random() * 8 + 6;
-
-  // 随机左右摇摆幅度
-  const swayAmount = Math.random() * 100 + 50;
+  // 随机大小 6 ~ 16px，模拟花瓣大小不一
+  const size = Math.random() * 10 + 6;
+  // 左右摆动幅度
+  const swingRange = (Math.random() - 0.5) * 160;
+  // 下落时长 7 ~ 14秒，快慢区分
+  const fallTime = Math.random() * 7 + 7;
 
   petal.style.width = size + 'px';
-  petal.style.height = size + 'px';
-  petal.style.left = startX + 'px';
-  petal.style.top = '-20px';
-  petal.style.background = randomColor;
-  petal.style.animationDuration = fallDuration + 's';
-  petal.style.setProperty('--sway', swayAmount + 'px');
+  petal.style.height = size * 0.75 + 'px';
+  petal.style.background = color;
+  // 光晕，还原图片发光效果
+  petal.style.boxShadow = `0 0 ${size/2}px ${color}`;
+  petal.style.left = Math.random() * window.innerWidth + 'px';
+  petal.style.setProperty('--swing', swingRange + 'px');
+  petal.style.animationDuration = fallTime + 's';
 
   document.body.appendChild(petal);
 
-  // 动画结束后移除，避免元素越来越多
-  setTimeout(() => {
-    petal.remove();
-  }, fallDuration * 1000);
+  // 动画结束自动销毁，防止DOM堆积
+  setTimeout(() => petal.remove(), fallTime * 1000);
 }
 
-// 定时生成花瓣
-function startPetalFall() {
-  setInterval(() => {
-    createPetal();
-  }, 800); // 每800ms生成一片，可调整密度
+// 启动花瓣
+function startPetalEffect() {
+  // 每700ms生成一片，想要更密改成500，更稀疏改成1000
+  setInterval(createRosePetal, 700);
 }
 
-// 页面加载完成后启动
-window.addEventListener('load', startPetalFall);
+// 页面加载完成启动
+window.addEventListener('load', startPetalEffect);
+
+// 窗口缩放适配
+window.addEventListener('resize', () => {});

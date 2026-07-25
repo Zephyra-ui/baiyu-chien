@@ -1060,34 +1060,32 @@ body {
     right: 20px;
   }
 }
-/* ====================== 花瓣飘落动态特效 ====================== */
-.petal {
+/* ========== 发光蔷薇花瓣飘落特效 ========== */
+.rose-petal {
   position: fixed;
-  top: -20px;
-  border-radius: 50% 0 50% 50%;
-  opacity: 0.75;
+  top: -30px;
+  border-radius: 40% 60% 50% 40%;
+  /* 核心：高斯模糊做出柔边朦胧感*/
+  filter: blur(1px);
+  opacity: 0.65;
   pointer-events: none;
   z-index: 9998;
-  transform: rotate(45deg);
-  animation: petalFall linear forwards;
+  animation: petalDrift linear infinite;
 }
 
-@keyframes petalFall {
+@keyframes petalDrift {
   0% {
-    transform: translateY(0) translateX(0) rotate(45deg);
-    opacity: 0.75;
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
   }
-  25% {
-    transform: translateY(25vh) translateX(calc(var(--sway) * 0.25)) rotate(60deg);
+  12% {
+    opacity: 0.7;
   }
-  50% {
-    transform: translateY(50vh) translateX(calc(var(--sway) * -0.25)) rotate(30deg);
-  }
-  75% {
-    transform: translateY(75vh) translateX(calc(var(--sway) * 0.15)) rotate(70deg);
+  88% {
+    opacity: 0.65;
   }
   100% {
-    transform: translateY(105vh) translateX(0) rotate(45deg);
+    transform: translateY(105vh) translateX(var(--swing)) rotate(360deg);
     opacity: 0;
   }
 }
