@@ -1060,3 +1060,34 @@ body {
     right: 20px;
   }
 }
+/* ====================== 花瓣飘落动态特效 ====================== */
+.petal {
+  position: fixed;
+  top: -20px;
+  border-radius: 50% 0 50% 50%;
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 9998;
+  transform: rotate(45deg);
+  animation: petalFall linear forwards;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(45deg);
+    opacity: 0.75;
+  }
+  25% {
+    transform: translateY(25vh) translateX(calc(var(--sway) * 0.25)) rotate(60deg);
+  }
+  50% {
+    transform: translateY(50vh) translateX(calc(var(--sway) * -0.25)) rotate(30deg);
+  }
+  75% {
+    transform: translateY(75vh) translateX(calc(var(--sway) * 0.15)) rotate(70deg);
+  }
+  100% {
+    transform: translateY(105vh) translateX(0) rotate(45deg);
+    opacity: 0;
+  }
+}
