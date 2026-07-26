@@ -417,6 +417,60 @@ body {
   margin-bottom: 12px;
   color: #555;
 }
+/* ========== 世界观折叠分类样式 ========== */
+.world-wrap {
+  max-width: 900px;
+  margin: 0 auto 60px;
+  padding: 0 8%;
+}
+.world-big-group {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0.05);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.world-big-title {
+  padding: 20px 24px;
+  font-family: 'YangRenDongZhuShiTi';
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #a04a5c;
+  transition: background 0.2s;
+}
+.world-big-title:hover {
+  background: #fcf5f7;
+}
+.arrow {
+  color: #999;
+  transition: transform 0.3s;
+}
+.world-big-group.open .arrow {
+  transform: rotate(180deg);
+}
+.world-child-list {
+  display: none;
+  padding: 0 24px 20px;
+}
+.world-big-group.open .world-child-list {
+  display: block;
+}
+.world-child-item {
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  background: #f8f2f4;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.25s;
+}
+.world-child-item:hover {
+  background: #e9d8dd;
+  color: #a04a5c;
+}
 
 /* ====================== 【4】穿搭画廊板块样式 ====================== */
 .gallery-section {

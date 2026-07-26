@@ -573,3 +573,60 @@ if (characterCards.length > 0 && characterModal) {
     }
   });
 }
+
+// ====================== 【世界观折叠+弹窗逻辑】 ======================
+const worldBigGroups = document.querySelectorAll('.world-big-group');
+const worldChildItems = document.querySelectorAll('.world-child-item');
+const worldModal = document.getElementById('worldModal');
+const worldClose = document.getElementById('worldClose');
+const worldModalTitle = document.getElementById('worldModalTitle');
+const worldModalText = document.getElementById('worldModalText');
+
+// 全部世界观文本数据库
+const worldData = {
+  "杜塞尔公国": "实行君主世袭制的西式公国，以希恩家族为世袭皇室，采用中央皇权统领、地方贵族世袭封地的治理架构。贵族女性拥有完整的爵位继承权与军政大权，可直接领兵理政、管辖封地。公国与东方中州保持官方外交往来与技术合作，依托边境驻防军团与超凡符阵共同拱卫国境。",
+  "希恩家族": "杜塞尔公国的统治皇室，以蔷薇纹章为家族核心标识。家族旁支可受封边境领地世袭统治，池恩（安妮可·希恩）是当今皇帝亲侄女，十岁丧父，十五岁继位，为南部第十六代边境领主。",
+  "银蔷薇军团": "杜塞尔公国三百年老牌边防军队，银蔷薇为军团象征，寓意坚韧与温柔。世代驻守国境，和边境大型符阵组合成全境防御核心屏障。",
+  "中州符术师使团": "中州外派官方技术外交队伍，受公国邀请常驻南境，专职巡检、修复边境符阵；符术师为官方认可客卿，拥有边境事务参与权限。",
+
+  "杜塞尔公国皇宫": "公国都城最高权力与礼仪中心，象牙白墙体搭配鎏金穹顶，穹顶镶嵌七颗红宝石拼成蔷薇造型；宫外引雪山融水修建人工湖。内部设有皇室肖像陈列厅、藏书房、兵器陈列厅，用于接见使团、举办王室大典。",
+  "蔷园": "南部山谷边境领主宅邸，集理政、居住、军务调度一体。石砌主楼外墙爬满各类蔷薇，配有政务书房、玻璃花房、演武场地，整体设计务实简约，无繁复奢华装饰。",
+  "南部边境线": "南境防御地带，地貌多缓坡、溪流与野生蔷薇，全线铺设大型防御符阵，分设多处哨所符文节点；东南段符阵老化严重，是边境冲突高危区域。",
+
+  "蔷薇祭": "公国年度全民节日，蔷薇盛放期举办。民众头戴蔷薇花冠聚集花田饮酒作诗，各地贵族私家花园对外开放，是融合花艺、诗歌的全民民俗庆典。",
+  "蔷薇崇拜": "蔷薇是公国国家符号、皇室专属图腾，纹章、衣饰、建筑、器物随处可见蔷薇纹样；边境贵族流行培育蔷薇、手绘花卉水彩。",
+  "饮食特色": "蜂蜜糕是公国国民经典点心，以本土野蜂蜜制作，口感清甜柔和，贵族和平民都十分喜爱。",
+  "贵族风尚": "宫廷礼仪规范严格，贵族男女均修习政务与剑术；边境贵族必须同时具备领地治理、战场指挥能力，女性合法继承爵位、执掌军队。",
+  "符术传统": "源自东方中州的超凡技艺，依靠符笔、特制墨、符纸运作；既能制作随身护符，也可搭建国境大型防御阵，修习极度考验专注力与手部稳定控制力。",
+
+  "开国传说": "初代皇帝持长剑踏遍边境，亲手种下第一株蔷薇划定国土，这段故事绘制在皇宫正门廊壁画，是全国家喻户晓的开国故事。",
+  "银蔷薇军团起源": "三百年前初代女统帅创立军团，选定银蔷薇作为精神标识，寓意刚柔并济，军团自此世代驻守边境。",
+  "边境领主传承": "南部封地为希恩旁支世袭领地，传承至十六代时由十五岁的池恩继承，少年独守边境，肖像收录皇宫皇室陈列厅，是公国近代传奇领主。"
+};
+
+// 大分类折叠展开
+worldBigGroups.forEach(group => {
+  const title = group.querySelector('.world-big-title');
+  title.addEventListener('click', () => {
+    group.classList.toggle('open');
+  });
+});
+
+// 打开对应词条弹窗
+worldChildItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const key = item.dataset.type;
+    worldModalTitle.textContent = key;
+    worldModalText.textContent = worldData[key];
+    worldModal.style.display = 'flex';
+  });
+});
+
+// 关闭弹窗按钮
+worldClose.addEventListener('click', () => {
+  worldModal.style.display = 'none';
+});
+// 点击弹窗遮罩关闭
+worldModal.addEventListener('click', e => {
+  if (e.target === worldModal) worldModal.style.display = 'none';
+});
