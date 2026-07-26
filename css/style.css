@@ -885,6 +885,11 @@ body {
 .story-item.active .story-content {
   display: block;
 }
+p {
+  margin-bottom: 16px; /* 段后间距 */
+  line-height: 1.75;   /* 行高 */
+  text-indent: 2em;    /* 首行缩进（可选） */
+}
 
 /* ====================== 悬浮音乐按钮 ====================== */
 .music-float-btn {
@@ -1112,3 +1117,4 @@ body {
     right: 20px;
   }
 }
+
