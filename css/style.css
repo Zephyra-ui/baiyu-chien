@@ -822,7 +822,9 @@ body {
   background: #9e7f7f;
 }
 
-/* ====================== 【6】故事集板块样式 ====================== */
+/* ====================== 【6】故事集板块样式（整理版） ====================== */
+
+/* 筛选标签栏 */
 .story-filter-wrap {
   display: flex;
   gap: 12px;
@@ -846,49 +848,94 @@ body {
   background: #e8e2dd;
 }
 
+/* 故事列表容器 */
 .story-list {
   max-width: 800px;
   margin: 0 auto 60px;
   padding: 0 8%;
 }
+
+/* 单条故事卡片 */
 .story-item {
   background: #fff;
   border-radius: 8px;
   margin-bottom: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  overflow: hidden;
 }
+
+/* 故事标题栏（点击折叠） */
 .story-header {
   padding: 20px 24px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background 0.2s;
+}
+.story-header:hover {
+  background: #fcf8f9;
 }
 .story-header h3 {
   font-family: 'YangRenDongZhuShiTi', 'Microsoft YaHei', sans-serif;
   font-size: 18px;
   color: #333;
+  font-weight: normal;
+  margin: 0;
 }
 .toggle-icon {
   color: #999;
-  transition: transform 0.3s;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 16px;
 }
 .story-item.active .toggle-icon {
   transform: rotate(180deg);
 }
+
+/* 故事正文内容 */
 .story-content {
   padding: 0 24px 24px;
   display: none;
   color: #555;
   line-height: 1.75;
+  font-family: 'PingFangSanShengTi', 'Microsoft YaHei', sans-serif;
 }
 .story-item.active .story-content {
   display: block;
 }
-p {
-  margin-bottom: 16px; /* 段后间距 */
-  line-height: 1.75;   /* 行高 */
-  text-indent: 2em;    /* 首行缩进（可选） */
+
+/* 正文段落排版：首行缩进 + 段间距 */
+.story-content p {
+  margin: 0 0 16px 0;
+  text-indent: 2em;
+  text-align: justify;
+}
+/* 第一段取消首行缩进，符合中文小说排版规范 */
+.story-content p:first-of-type {
+  text-indent: 0;
+}
+/* 最后一段去掉底部间距 */
+.story-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ====================== 故事集移动端适配 ====================== */
+@media (max-width: 768px) {
+  .story-filter-wrap {
+    padding: 0 20px 20px;
+  }
+  .story-list {
+    padding: 0 20px 40px;
+  }
+  .story-header {
+    padding: 16px 20px;
+  }
+  .story-content {
+    padding: 0 20px 20px;
+    font-size: 15px;
+  }
 }
 
 /* ====================== 悬浮音乐按钮 ====================== */
