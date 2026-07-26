@@ -912,10 +912,6 @@ body {
   text-indent: 2em;
   text-align: justify;
 }
-/* 第一段取消首行缩进，符合中文小说排版规范 */
-.story-content p:first-of-type {
-  text-indent: 0;
-}
 /* 最后一段去掉底部间距 */
 .story-content p:last-child {
   margin-bottom: 0;
