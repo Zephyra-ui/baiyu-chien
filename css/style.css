@@ -871,18 +871,25 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   transition: background 0.2s;
 }
-.story-header:hover {
-  background: #fcf8f9;
-}
+
 .story-header h3 {
   font-family: 'YangRenDongZhuShiTi', 'Microsoft YaHei', sans-serif;
   font-size: 18px;
   color: #333;
   font-weight: normal;
   margin: 0;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .toggle-icon {
   color: #999;
   font-size: 12px;
@@ -890,8 +897,19 @@ body {
   flex-shrink: 0;
   margin-left: 16px;
 }
+
 .story-item.active .toggle-icon {
   transform: rotate(180deg);
+}
+.story-item {
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* 故事正文内容 */
