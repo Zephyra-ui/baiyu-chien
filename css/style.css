@@ -853,6 +853,7 @@ body {
   max-width: 800px;
   margin: 0 auto 60px;
   padding: 0 8%;
+  box-sizing: border-box;
 }
 
 /* 单条故事卡片 */
@@ -862,6 +863,9 @@ body {
   margin-bottom: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* 故事标题栏（点击折叠） */
@@ -873,11 +877,12 @@ body {
   align-items: center;
   gap: 16px;
   width: 100%;
-  max-width: 100%;
   box-sizing: border-box;
   transition: background 0.2s;
 }
-
+.story-header:hover {
+  background: #fcf8f9;
+}
 .story-header h3 {
   font-family: 'YangRenDongZhuShiTi', 'Microsoft YaHei', sans-serif;
   font-size: 18px;
@@ -889,7 +894,6 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .toggle-icon {
   color: #999;
   font-size: 12px;
@@ -897,19 +901,8 @@ body {
   flex-shrink: 0;
   margin-left: 16px;
 }
-
 .story-item.active .toggle-icon {
   transform: rotate(180deg);
-}
-.story-item {
-  background: #fff;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  overflow: hidden;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
 }
 
 /* 故事正文内容 */
@@ -919,6 +912,9 @@ body {
   color: #555;
   line-height: 1.75;
   font-family: 'PingFangSanShengTi', 'Microsoft YaHei', sans-serif;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow: hidden;
 }
 .story-item.active .story-content {
   display: block;
@@ -933,6 +929,13 @@ body {
 /* 最后一段去掉底部间距 */
 .story-content p:last-child {
   margin-bottom: 0;
+}
+
+/* 正文内图片自适应，防止撑宽卡片 */
+.story-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ====================== 故事集移动端适配 ====================== */
