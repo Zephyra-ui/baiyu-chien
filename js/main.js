@@ -98,19 +98,12 @@ if (outfitCards.length > 0 && outfitModal) {
       scenes: "军队演练、演武比剑、出征巡察、边境驻防、实战训练等高强度场景，极致利落无赘饰，实用性优先。",
       version: "短款收腰立领戎装上衣+高弹紧身军裤+中筒军靴，修身战斗廓形。短款设计最大化提升活动度，肩部拼接薄牛皮护肩；军裤高腰紧身，裤侧加固缝线；腰部叠搭双层武装带。",
       fabric: "主色哑光墨黑，肩线裤缝压酒红明线勾勒，黑红配比约9:1。耐磨帆布拼接哑光牛皮，肘膝部位加厚，防风防刮，经过拒水处理，轻微淋雨不会立刻渗透。",
-      details: [
-        "左臂缝蔷薇公国制式军徽布标，耐磨处理不易脱线褪色",
-        "魔术贴绑带袖口，可完全收紧避免挥剑时衣袖晃动干扰",
-        "胸口、腰侧、大腿外侧多处隐形暗袋，存放止血药、火石等应急物品",
-        "下摆与腰侧多枚加固金属挂袢，可固定披风、水壶、剑鞘等装备"
-      ],
       match: [
         "鞋履：黑色牛皮中筒军靴，2cm防滑橡胶底，靴口收紧防沙石",
         "配饰：最小号蔷薇耳钉 + 黑色牛皮表带军用怀表",
-        "随身：双层牛皮武装带挂载短匕首、便携行囊与水壶"
       ],
       egg: "标准高马尾束得紧实利落，一场演练下来发根与后颈头皮紧绷酸涩。只有白屿能精准察觉，每次演武结束都会第一时间走过来，指尖替她松开发绳，掌心顺着发缝轻轻按揉发根舒缓酸胀。",
-      img: "./images/chien-jirong.jpg"
+     'img':"./images/chien-jirong.jpg",
     },
     "chien-liuwei": {
       theme: "chien-theme",
@@ -288,7 +281,8 @@ if (outfitCards.length > 0 && outfitModal) {
       document.getElementById('modalScenes').textContent = data.scenes;
       document.getElementById('modalVersion').textContent = data.version;
       document.getElementById('modalFabric').textContent = data.fabric;
-      document.getElementById('modalDetails').innerHTML = data.details.map(i => `<li>${i}</li>`).join('');
+      // 已删除细节亮点模块，注释下面一行，不再操作DOM
+      // document.getElementById('modalDetails').innerHTML = data.details.map(i => `<li>${i}</li>`).join('');
       document.getElementById('modalMatch').innerHTML = data.match.map(i => `<li>${i}</li>`).join('');
       document.getElementById('modalEgg').textContent = data.egg;
 

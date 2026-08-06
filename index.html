@@ -183,7 +183,7 @@
   </div>
 </section>
 
- <!-- ====================== 4.穿搭画廊板块 #gallery ====================== -->
+<!-- ====================== 4.穿搭画廊板块 #gallery ====================== -->
 <section id="gallery" class="page-section">
   <div class="page-header">
     <h1>穿搭画廊</h1>
@@ -192,7 +192,7 @@
 
   <!-- 池恩服设展区 -->
   <div class="gallery-section">
-    <h2 class="gallery-title chien-title">池恩 · 蔷薇公国女伯爵</h2>
+    <h2 class="gallery-title chien-title">池恩 · 杜塞尔公国公爵</h2>
     <div class="gallery-grid">
       <div class="outfit-card chien-card" data-outfit="chien-feishu">
         <img src="./images/chien-feishu.jpg" alt="绯枢·议政官装">
@@ -203,13 +203,15 @@
         </div>
       </div>
       <div class="outfit-card chien-card" data-outfit="chien-jirong">
-        <img src="./images/chien-jirong.jpg" alt="棘戎·戎装劲服">
-        <div class="outfit-info">
-          <span class="outfit-tag">军事装束</span>
-          <h3>棘戎 · 戎装劲服</h3>
-          <p>演武练兵 · 出征巡察</p>
-        </div>
-      </div>
+  <div class="outfit-card-bg">
+    <img src="./images/chien-jirong.jpg" alt="棘戎·戎装劲服">
+  </div>
+  <div class="outfit-info">
+    <span class="outfit-tag">军事装束</span>
+    <h3>棘戎 · 戎装劲服</h3>
+    <p>演武练兵 · 出征巡察</p>
+  </div>
+</div>
       <div class="outfit-card chien-card" data-outfit="chien-liuwei">
         <img src="./images/chien-liuwei.jpg" alt="鎏薇·盛典礼服">
         <div class="outfit-info">
@@ -276,14 +278,17 @@
     </div>
   </div>
 
-  <!-- 穿搭详情弹窗 -->
+  <!-- 穿搭详情弹窗【已修正DOM结构】 -->
   <div id="outfitModal" class="modal">
-    <div class="modal-content outfit-modal-content">
-      <div class="modal-left outfit-modal-left">
+    <!--关闭按钮挪到弹窗最外层，不会跟随滚动！！-->
+    <span id="modalClose" class="modal-close-btn">&times;</span>
+    <div class="outfit-modal-content">
+      <!--左侧图片区域-->
+      <div class="outfit-modal-left">
         <img id="modalImg" src="" alt="穿搭详情">
       </div>
-      <div class="modal-right outfit-modal-right">
-        <span id="modalClose" class="modal-close-btn">&times;</span>
+      <!--右侧文字滚动区域-->
+      <div class="outfit-modal-right">
         <div class="outfit-modal-header">
           <span class="modal-tag" id="modalTag"></span>
           <h2 id="modalTitle"></h2>
@@ -301,10 +306,6 @@
         <div class="outfit-detail-group">
           <h4>色彩与面料</h4>
           <p id="modalFabric"></p>
-        </div>
-        <div class="outfit-detail-group">
-          <h4>细节亮点</h4>
-          <ul id="modalDetails"></ul>
         </div>
         <div class="outfit-detail-group">
           <h4>完整搭配</h4>
